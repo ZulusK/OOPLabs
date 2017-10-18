@@ -8,9 +8,11 @@ namespace Lab1
 {
     class Node
     {
+        static ulong id = 0;
         string name;
-        bool isVisible=true;
-        bool isEnable=true;
+        bool isVisible = true;
+
+        bool isEnable = true;
         Node parent;
         Dictionary<string, Node> children;
         public Dictionary<string, Node> Children
@@ -49,7 +51,7 @@ namespace Lab1
                 this.name = value;
                 if (Parent != null)
                 {
-                    Parent.updateChild(oldName, name);
+                    Parent.UpdateChild(oldName, name);
                 }
             }
         }
@@ -64,7 +66,7 @@ namespace Lab1
                 if (this.isVisible != value)
                 {
                     this.isVisible = value;
-                    this.draw();
+                    this.Draw();
                 }
             }
         }
@@ -79,7 +81,7 @@ namespace Lab1
                 if (this.isEnable != value)
                 {
                     this.isEnable = value;
-                    this.draw();
+                    this.Draw();
                 }
             }
         }
@@ -90,21 +92,21 @@ namespace Lab1
             {
                 foreach (var kort in children)
                 {
-                    kort.Value.draw();
+                    kort.Value.Draw();
                 }
             }
         }
         //remove node from parent by reference
         public bool Remove(Node node)
         {
-            return remove(node.name);
+            return Remove(node.name);
         }
         //remove node from parent by it's name
         public bool Remove(string node)
         {
             if (children.Remove(node))
             {
-                draw();
+                Draw();
                 return true;
             }
             else
@@ -126,9 +128,9 @@ namespace Lab1
             {
                 return false;
             }
-          
+
         }
-        
+
         // add child to node
         public bool Add(Node child)
         {
@@ -152,8 +154,15 @@ namespace Lab1
         {
             this.name = name;
             this.parent = parent;
-            
+            Console.WriteLine("Node created {1}", this.name);
         }
-        
+        public Node() : this("#" + id, null)
+        {
+
+        }
+        public override string ToString()
+        {
+            return String.Format("node {1}: parent {2}: childrens:{3}", name, parent != null ? parent.name : null, children.Count);
+        }
     }
 }
