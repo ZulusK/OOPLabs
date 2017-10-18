@@ -66,7 +66,7 @@ namespace Lab1
                 if (this.isVisible != value)
                 {
                     this.isVisible = value;
-                    this.Draw();
+                    this.Update();
                 }
             }
         }
@@ -81,7 +81,7 @@ namespace Lab1
                 if (this.isEnable != value)
                 {
                     this.isEnable = value;
-                    this.Draw();
+                    this.Update();
                 }
             }
         }
@@ -106,7 +106,7 @@ namespace Lab1
         {
             if (children.Remove(node))
             {
-                Draw();
+                Update();
                 return true;
             }
             else
@@ -114,7 +114,7 @@ namespace Lab1
                 return false;
             }
         }
-        // set childs' name in children map
+        // set child's name in children map
         protected bool UpdateChild(string oldName, string newName)
         {
             if (children.ContainsKey(oldName))
@@ -130,7 +130,17 @@ namespace Lab1
             }
 
         }
-
+        protected void Update()
+        {
+            if (parent != null)
+            {
+                parent.Update();
+            }
+            else
+            {
+                Draw();
+            }
+        }
         // add child to node
         public bool Add(Node child)
         {
@@ -138,6 +148,7 @@ namespace Lab1
             {
                 children[child.name] = child;
                 child.Parent = this;
+                Update();
                 return true;
             }
             else
