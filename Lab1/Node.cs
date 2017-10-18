@@ -8,8 +8,16 @@ namespace Lab1
 {
     class Node
     {
-        static ulong id = 0;
-        string name;
+        static ulong id;
+        static string Environment { get; }
+
+        static Node()
+        {
+            id = 0;
+            Environment = System.DateTime.Today.ToLongDateString();
+        }
+
+        protected string name;
         bool isVisible = true;
 
         bool isEnable = true;
@@ -90,6 +98,7 @@ namespace Lab1
         {
             if (isVisible)
             {
+                Console.WriteLine("{1} had drawed", name);
                 foreach (var kort in children)
                 {
                     kort.Value.Draw();
@@ -161,15 +170,15 @@ namespace Lab1
         {
             return children[name];
         }
-        public Node(string name, Node parent)
+        public Node(string name = null, Node parent = null)
         {
-            this.name = name;
-            this.parent = parent;
+            this.name = name != null ? name : ("#" + id++);
+            //add node to parent or root node
+            if (parent != null)
+            {
+                parent.Add(this);
+            }
             Console.WriteLine("Node created {1}", this.name);
-        }
-        public Node() : this("#" + id, null)
-        {
-
         }
         public override string ToString()
         {
