@@ -20,7 +20,7 @@ namespace Lab1
         protected string name;
         bool isVisible = true;
 
-        bool isEnable = true;
+       
         Node parent;
         Dictionary<string, Node> children;
         public Dictionary<string, Node> Children
@@ -35,11 +35,13 @@ namespace Lab1
         {
             protected set
             {
+
                 if (this.parent != null)
                 {
                     parent.Remove(this);
                 }
                 this.parent = value;
+
             }
             get
             {
@@ -78,27 +80,12 @@ namespace Lab1
                 }
             }
         }
-        public bool IsEnable
-        {
-            get
-            {
-                return this.isEnable;
-            }
-            set
-            {
-                if (this.isEnable != value)
-                {
-                    this.isEnable = value;
-                    this.Update();
-                }
-            }
-        }
-
+       
         public virtual void Draw()
         {
             if (isVisible)
             {
-                Console.WriteLine("{1} had drawed", name);
+                Console.WriteLine("+ '{0}' had been drawed, [{1}]", name,Environment);
                 foreach (var kort in children)
                 {
                     kort.Value.Draw();
@@ -111,10 +98,13 @@ namespace Lab1
             return Remove(node.name);
         }
         //remove node from parent by it's name
-        public bool Remove(string node)
+        public bool Remove(string nodeName)
         {
-            if (children.Remove(node))
+            var node = children[nodeName];
+            if (children.Remove(nodeName))
             {
+                Console.WriteLine("Remove '{0}' from '{1}'", nodeName, name);
+                node.parent = null;
                 Update();
                 return true;
             }
@@ -139,6 +129,7 @@ namespace Lab1
             }
 
         }
+        //update parent, or if it's is epsent, draw this node and draw it's children
         protected void Update()
         {
             if (parent != null)
@@ -153,8 +144,9 @@ namespace Lab1
         // add child to node
         public bool Add(Node child)
         {
-            if (!children.ContainsKey(child.name))
+            if (child != parent && !children.ContainsKey(child.name))
             {
+                Console.WriteLine("Add '{0}' to '{1}'",child.name,name);
                 children[child.name] = child;
                 child.Parent = this;
                 Update();
@@ -170,19 +162,17 @@ namespace Lab1
         {
             return children[name];
         }
-        public Node(string name = null, Node parent = null)
+        public Node(string name = null)
         {
+            this.children = new Dictionary<string, Node>();
             this.name = name != null ? name : ("#" + id++);
-            //add node to parent or root node
-            if (parent != null)
-            {
-                parent.Add(this);
-            }
-            Console.WriteLine("Node created {1}", this.name);
+            Console.WriteLine("$ '{0}' node created", this.name);
         }
+
         public override string ToString()
         {
-            return String.Format("node {1}: parent {2}: childrens:{3}", name, parent != null ? parent.name : null, children.Count);
+            return String.Format("'{0}': parent '{1}': childrens:{2}", name, parent != null ? parent.name : null, children.Count);
         }
+
     }
 }

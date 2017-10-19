@@ -9,10 +9,11 @@ namespace Lab1
 
     class Canvas : Node
     {
-        List<string> content;
         string style;
         int width = 0;
         int heigth = 0;
+        int left = 0;
+        int top = 0;
 
         public int Width
         {
@@ -22,6 +23,7 @@ namespace Lab1
                 if (value >= 0)
                 {
                     width = value;
+                    Update();
                 }
             }
         }
@@ -33,6 +35,7 @@ namespace Lab1
                 if (value >= 0)
                 {
                     heigth = value;
+                    Update();
                 }
             }
         }
@@ -45,23 +48,45 @@ namespace Lab1
                 Update();
             }
         }
-        public override void Draw()
+
+        public int Left
         {
-            base.Draw();
-            foreach (var element in content)
+            get => left;
+            set
             {
-                Console.WriteLine(element);
+                left = value;
+                Update();
+            }
+        }
+        public int Top
+        {
+            get => top; set
+            {
+                top = value;
+                Update();
             }
         }
 
-        public Canvas(int width = 0, int heigth = 0, string name = null, Node parent = null) : base(name, parent)
+        public override void Draw()
         {
-            this.Width = width;
-            this.Heigth = heigth;
-            content = new List<string>();
+            Console.WriteLine("!apply with style: '{1}' in frame [{2},{3}],[{4},{5}]", name, style, Left, Top, width, heigth);
+            base.Draw();
+        }
+        public Canvas(int width = 0, int heigth = 0, int left = 0, int top = 0, string name = null) : base(name)
+        {
+            this.width = width >= 0 ? width : 0;
+            this.heigth = heigth >= 0 ? heigth : 0;
+            this.left = left;
+            this.top = top;
         }
 
-        public Canvas(string name, Node parent) : this(0, 0, name, parent) { }
+        public Canvas(string name) : this(0, 0, 0, 0, name) { }
+
+        //copy canvas
+        public Canvas(Canvas original) : this(original.width,original.heigth,original.left,original.top, original.name)
+        {
+
+        }
 
     }
 }
