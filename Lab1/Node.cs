@@ -9,18 +9,22 @@ namespace Lab1
     class Node
     {
         static ulong id;
+        static Node root;
+        public static Node Root { get => root; }
+
         static string Environment { get; }
 
         static Node()
         {
             id = 0;
             Environment = System.DateTime.Today.ToLongDateString();
+            root = new Node("#Root");
         }
 
         protected string name;
         bool isVisible = true;
 
-       
+
         Node parent;
         Dictionary<string, Node> children;
         public Dictionary<string, Node> Children
@@ -65,6 +69,7 @@ namespace Lab1
                 }
             }
         }
+
         public bool IsVisible
         {
             get
@@ -80,12 +85,12 @@ namespace Lab1
                 }
             }
         }
-       
+
         public virtual void Draw()
         {
-            if (isVisible)
+            if (isVisible && parent!=null)
             {
-                Console.WriteLine("+ '{0}' had been drawed, [{1}]", name,Environment);
+                Console.WriteLine("+ '{0}' had been drawed, [{1}]", name, Environment);
                 foreach (var kort in children)
                 {
                     kort.Value.Draw();
@@ -93,12 +98,12 @@ namespace Lab1
             }
         }
         //remove node from parent by reference
-        public bool Remove(Node node)
+        public virtual bool Remove(Node node)
         {
             return Remove(node.name);
         }
         //remove node from parent by it's name
-        public bool Remove(string nodeName)
+        public virtual bool Remove(string nodeName)
         {
             var node = children[nodeName];
             if (children.Remove(nodeName))
@@ -142,11 +147,11 @@ namespace Lab1
             }
         }
         // add child to node
-        public bool Add(Node child)
+        public virtual bool Add(Node child)
         {
             if (child != parent && !children.ContainsKey(child.name))
             {
-                Console.WriteLine("Add '{0}' to '{1}'",child.name,name);
+                Console.WriteLine("Add '{0}' to '{1}'", child.name, name);
                 children[child.name] = child;
                 child.Parent = this;
                 Update();

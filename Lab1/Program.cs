@@ -15,6 +15,8 @@ namespace Lab1
             Console.WriteLine("                  Test Node class");
             Console.WriteLine("====================================================");
             Node root = new Node("root");
+            Node.Root.Add(root);
+
             Node n0 = new Node();
             Node n1 = new Node();
             Node n2 = new Node();
@@ -32,12 +34,46 @@ namespace Lab1
             root.Draw();
             Console.WriteLine("Draw parent of n0");
             n0.Parent.Draw();
-            Console.WriteLine("====================================================");
+            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++");
         }
+        static void testCanvas()
+        {
 
+            Console.WriteLine("====================================================");
+            Console.WriteLine("                  Test Canvas class");
+            Console.WriteLine("====================================================");
+            Canvas root = new Canvas("root");
+            Canvas c1 = new Canvas();
+
+            Canvas c2 = new Canvas();
+            Canvas c3 = new Canvas(10, -12, 3, -4);
+            root.Add(c1);
+            root.Add(c2);
+
+            //add base class to child class
+            c2.Add((Node)c3);
+            Console.WriteLine("Draw all nodes");
+            ((Node)root).Draw();
+
+            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        }
+        static void testLabel()
+        {
+
+            Console.WriteLine("====================================================");
+            Console.WriteLine("                  Test Label class");
+            Console.WriteLine("====================================================");
+            Label l1 = new Label("some label's text");
+            l1.Draw();
+            Console.WriteLine("Try to add new child to label, result: {0}", l1.Add(new Node()));
+            Console.WriteLine("Try to remove  child from label, result: {0}", l1.Remove(new Node()));
+            Console.WriteLine("Try to add new child to (Node) label, result: {0}", ((Node)l1).Add(new Node()));
+        }
         static void Main(string[] args)
         {
             testNode();
+            testCanvas();
+            testLabel();
             Console.ReadLine();
 
         }

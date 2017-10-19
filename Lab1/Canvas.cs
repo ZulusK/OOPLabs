@@ -9,6 +9,14 @@ namespace Lab1
 
     class Canvas : Node
     {
+        public static string Font { get; set; }
+
+        static Canvas()
+        {
+            Font = "Times New Roman";
+            Console.WriteLine("Font loaded {0}", Font);
+        }
+
         string style;
         int width = 0;
         int heigth = 0;
@@ -69,8 +77,8 @@ namespace Lab1
 
         public override void Draw()
         {
-            Console.WriteLine("!apply with style: '{1}' in frame [{2},{3}],[{4},{5}]", name, style, Left, Top, width, heigth);
             base.Draw();
+            Console.WriteLine("!apply style '{0}' in frame [{1},{2}],[{3},{4}] to '{5}'", style, Left, Top, width, heigth, name);
         }
         public Canvas(int width = 0, int heigth = 0, int left = 0, int top = 0, string name = null) : base(name)
         {
@@ -83,9 +91,8 @@ namespace Lab1
         public Canvas(string name) : this(0, 0, 0, 0, name) { }
 
         //copy canvas
-        public Canvas(Canvas original) : this(original.width,original.heigth,original.left,original.top, original.name)
+        public Canvas(Canvas original) : this(original.width, original.heigth, original.left, original.top, original.name)
         {
-
         }
 
     }
