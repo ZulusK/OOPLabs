@@ -68,12 +68,40 @@ namespace Lab1
             Console.WriteLine("Try to add new child to label, result: {0}", l1.Add(new Node()));
             Console.WriteLine("Try to remove  child from label, result: {0}", l1.Remove(new Node()));
             Console.WriteLine("Try to add new child to (Node) label, result: {0}", ((Node)l1).Add(new Node()));
+            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++");
+
         }
+        static void Foo()
+        {
+            Console.WriteLine("Foo");
+        }
+
+        static void Bar()
+        {
+            Console.WriteLine("Bar");
+        }
+        static void testPushButton()
+        {
+
+            Console.WriteLine("====================================================");
+            Console.WriteLine("                  Test PushButton class");
+            Console.WriteLine("====================================================");
+            PushButton b1 = new PushButton("b1");
+            b1.Click();
+            b1.OnClicked = Foo;
+            b1.OnReleased = Bar;
+            b1.Release();
+            ((Button)b1).Click();
+            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            
+        }
+
         static void Main(string[] args)
         {
             testNode();
             testCanvas();
             testLabel();
+            testPushButton();
             Console.ReadLine();
 
         }

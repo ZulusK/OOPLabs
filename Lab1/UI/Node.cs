@@ -88,9 +88,9 @@ namespace Lab1
 
         public virtual void Draw()
         {
-            if (isVisible && parent!=null)
+            if (isVisible && parent != null)
             {
-                Console.WriteLine("+ '{0}' had been drawed, [{1}]", name, Environment);
+                Console.WriteLine("+node '{0}' had been drawed, [{1}]", name, Environment);
                 foreach (var kort in children)
                 {
                     kort.Value.Draw();
