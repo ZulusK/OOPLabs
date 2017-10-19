@@ -11,16 +11,20 @@ namespace Lab1
 
         public override void Click()
         {
-            Console.WriteLine("-'pushButton {0}' clicked", name);
+            Console.WriteLine("- pushButton '{0}' clicked", name);
             base.Click();
         }
 
         public override void Release()
         {
-            Console.WriteLine("-' pushButton {0}' released", name);
+            Console.WriteLine("- pushButton '{0}' released", name);
             base.Release();
         }
-
+        public override void Draw()
+        {
+            Console.WriteLine("+PushButton draw");
+            base.Draw();
+        }
         public PushButton(string text = "") : base(text)
         {
             Style = "Default Push button style";

@@ -10,37 +10,33 @@ namespace Lab1
     {
         public Action OnClicked { get; set; }
         public Action OnReleased { get; set; }
-
         protected bool state;
         public bool State
         {
             get => state;
         }
-
         public Label Text { get; set; }
-
-
         public virtual void Click()
         {
+            Update();
+
             if (OnClicked != null && !state)
             {
                 this.state = true;
                 OnClicked();
             }
-            Update();
         }
         public virtual void Release()
         {
+            Update();
+
             if (OnReleased != null && state)
             {
                 this.state = false;
                 OnReleased();
             }
-            Update();
         }
-
-
-        protected Button(string text = "New button") : base()
+        protected Button(string text = "New button",string name=null) : base(name!=null?name:"button"+ID)
         {
             this.state = false;
             OnClicked = null;
@@ -48,7 +44,6 @@ namespace Lab1
             Text = new Label(text, "description");
             base.Add(Text);
         }
-
         public override bool Add(Node node)
         {
             return false;

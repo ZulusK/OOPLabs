@@ -9,6 +9,7 @@ namespace Lab1
     class Node
     {
         static ulong id;
+        protected static ulong ID { get => id++; }
         static Node root;
         public static Node Root { get => root; }
 
@@ -22,11 +23,11 @@ namespace Lab1
         }
 
         protected string name;
-        bool isVisible = true;
+        protected bool isVisible = true;
 
 
-        Node parent;
-        Dictionary<string, Node> children;
+        protected Node parent;
+        protected Dictionary<string, Node> children;
         public Dictionary<string, Node> Children
         {
             get
@@ -88,9 +89,9 @@ namespace Lab1
 
         public virtual void Draw()
         {
-            if (isVisible && parent != null)
+            if (isVisible && parent != null || this == Root)
             {
-                Console.WriteLine("+node '{0}' had been drawed, [{1}]", name, Environment);
+                Console.WriteLine("         ~node '{0}' had been drawed, [{1}]", name, Environment);
                 foreach (var kort in children)
                 {
                     kort.Value.Draw();
@@ -159,6 +160,7 @@ namespace Lab1
             }
             else
             {
+                Console.WriteLine("Can't add '{0}' to '{1}'", child.name, name);
                 return false;
             }
         }
@@ -170,7 +172,7 @@ namespace Lab1
         public Node(string name = null)
         {
             this.children = new Dictionary<string, Node>();
-            this.name = name != null ? name : ("#" + id++);
+            this.name = name != null ? name : ("node" + ID);
             Console.WriteLine("$ '{0}' node created", this.name);
         }
 
@@ -179,5 +181,9 @@ namespace Lab1
             return String.Format("'{0}': parent '{1}': childrens:{2}", name, parent != null ? parent.name : null, children.Count);
         }
 
+        public void Clear()
+        {
+            this.children.Clear();
+        }
     }
 }

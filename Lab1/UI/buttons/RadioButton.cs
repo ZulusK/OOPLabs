@@ -15,7 +15,7 @@ namespace Lab1
 
         public override void Click()
         {
-            Console.WriteLine("-'radioButton {0}' clicked", name);
+            Console.WriteLine("- radioButton '{0}' clicked", name);
             selected = !selected;
             if (OnStateChange != null)
             {
@@ -23,19 +23,21 @@ namespace Lab1
             }
             base.Click();
         }
-
+        public override void Draw()
+        {
+            Console.WriteLine("+RadioButton draw");
+            base.Draw();
+        }
         public override void Release()
         {
-            Console.WriteLine("-' radioButton {0}' released", name);
+            Console.WriteLine("- radioButton '{0}' released", name);
             base.Release();
         }
-
         public RadioButton(string text = "") : base(text)
         {
             Style = "Default Radio button style";
             selected = false;
         }
-
         public override string ToString()
         {
             return String.Format("RadioButton:'{0}', state: '{1}',{2}", Text, state, base.ToString());

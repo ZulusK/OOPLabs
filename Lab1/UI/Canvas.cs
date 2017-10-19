@@ -77,10 +77,13 @@ namespace Lab1
 
         public override void Draw()
         {
-            Console.WriteLine("!apply style '{0}' in frame [{1},{2}],[{3},{4}] to '{5}'", style, Left, Top, width, heigth, name);
-            base.Draw();
+            if (isVisible && parent != null || this == Root)
+            {
+                Console.WriteLine("     =apply style '{0}' in frame [{1},{2}],[{3},{4}] to '{5}'", style, Left, Top, width, heigth, name);
+                base.Draw();
+            }
         }
-        public Canvas(int width = 0, int heigth = 0, int left = 0, int top = 0, string name = null) : base(name)
+        public Canvas(int width = 0, int heigth = 0, int left = 0, int top = 0, string name = null) : base(name!=null?name:"canvas"+ID)
         {
             this.width = width >= 0 ? width : 0;
             this.heigth = heigth >= 0 ? heigth : 0;
@@ -94,6 +97,6 @@ namespace Lab1
         public Canvas(Canvas original) : this(original.width, original.heigth, original.left, original.top, original.name)
         {
         }
-        
+
     }
 }

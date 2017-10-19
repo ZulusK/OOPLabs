@@ -15,8 +15,7 @@ namespace Lab1
             base.Draw();
             Console.WriteLine("Label '{0}' drawed with font[{2}], \"{1}\" ", name, Text, Font);
         }
-
-        public Label(string text = "", string name = null) : base(name)
+        public Label(string text = "", string name = null) : base(name != null ? name : "label" + ID)
         {
             this.Text = text;
         }
@@ -29,15 +28,13 @@ namespace Lab1
         {
             return false;
         }
-
-
         public override bool Remove(string nodeName)
         {
             return false;
         }
         public override string ToString()
         {
-            return String.Format("Label:'{0}',{1}" , Text , base.ToString());
+            return String.Format("Label:'{0}',{1}", Text, base.ToString());
         }
     }
 }
