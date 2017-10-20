@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab1
+namespace Lab1.UI.Text
 {
     class TextArea : ScrollFrame
     {
@@ -30,20 +30,20 @@ namespace Lab1
             }
         }
 
-        public override void Draw()
-        {
-            Console.WriteLine("+TextArea '{0}' draw text:\n{1}", name, WindowedText);
-            base.Draw();
-        }
-        public override string ToString()
-        {
-            return String.Format("TextArea:'{0}', position: {1}, width:{2}", name, Pointer, WindowWidth);
-        }
+        //public override void Draw()
+        //{
+        //    Console.WriteLine("+TextArea '{0}' draw text:\n{1}", name, WindowedText);
+        //    base.Draw();
+        //}
+        //public override string ToString()
+        //{
+            //return String.Format("TextArea:'{0}', position: {1}, width:{2}", name, Pointer, WindowWidth);
+        //}
 
-        public TextArea(string text = "", uint pointer = 0, uint width = 100, string name = null) : base(pointer, width, (uint)text.Length, name)
-        {
-            this.Text = text;
-            Style = "Default textArea   style";
-        }
+        //public TextArea(string text = "", uint pointer = 0, uint width = 100, string name = null) : base(pointer, width, (uint)text.Length, name)
+        //{
+        //    this.Text = text;
+        //    Style = "Default textArea   style";
+        //}
     }
 }

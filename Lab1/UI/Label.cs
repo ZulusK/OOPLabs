@@ -4,37 +4,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab1
+namespace Lab1.UI
 {
-    class Label : Canvas
+    class Label : UINode
     {
+        protected string text;
 
-        public string Text { get; set; }
-        public override void Draw()
+        static Label(){
+            Console.WriteLine("    label~ class loaded");
+            canHaveChild = false;
+        }
+        public string Text
+        {
+            get => text;
+            set
+            {
+                text = value;
+                Update();
+            }
+        }
+        protected override void Draw()
         {
             base.Draw();
-            Console.WriteLine("Label '{0}' drawed with font[{2}], \"{1}\" ", name, Text, Font);
+            Console.WriteLine("    label~ draw label '{0}': {1}", name, text);
         }
-        public Label(string text = "", string name = null) : base(name != null ? name : "label" + ID)
+        public Label(string text = "", string css = "Default label css", string name = null) : base(name != null ? name : "label" + ID, css)
         {
-            this.Text = text;
+            this.text = text;
+            Console.WriteLine("    label~ created '{0}'",this.name);
         }
-
-        public override bool Add(Node child)
-        {
-            return false;
-        }
-        public override bool Remove(Node node)
-        {
-            return false;
-        }
-        public override bool Remove(string nodeName)
-        {
-            return false;
-        }
-        public override string ToString()
-        {
-            return String.Format("Label:'{0}',{1}", Text, base.ToString());
-        }
+        
     }
 }

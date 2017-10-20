@@ -43,11 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="UI\buttons\Button.cs" />
-    <Compile Include="UI\buttons\PushButton.cs" />
-    <Compile Include="UI\buttons\RadioButton.cs" />
     <Compile Include="UI\Canvas.cs" />
+    <Compile Include="UI\CSSLoader.cs" />
     <Compile Include="UI\Label.cs" />
-    <Compile Include="UI\Node.cs" />
+    <Compile Include="UI\UINode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\text\ScrollFrame.cs" />

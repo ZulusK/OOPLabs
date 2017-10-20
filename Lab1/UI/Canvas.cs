@@ -4,59 +4,67 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab1
+namespace Lab1.UI
 {
 
-    class Canvas : Node
+    abstract class Canvas
     {
-        public static string Font { get; set; }
+        static string environment;
+        static CSSLoader stylyzer;
+
+        uint width;
+        uint height;
+        int left;
+        int top;
+        string css;
 
         static Canvas()
         {
-            Font = "Times New Roman";
-            Console.WriteLine("Font loaded {0}", Font);
+            environment = System.DateTime.Today.ToShortTimeString();
+            stylyzer = new CSSLoader();
+            Console.WriteLine("~canvas~ class loaded");
         }
 
-        string style;
-        int width = 0;
-        int heigth = 0;
-        int left = 0;
-        int top = 0;
 
-        public int Width
+        static CSSLoader Stylyzer
+        {
+            get => stylyzer;
+        }
+
+
+        public Canvas(string css = "Default") : this(0, 0, 0, 0, css)
+        {
+
+        }
+
+        public Canvas(uint width, uint height, int left, int top, string css = null)
+        {
+            this.width = width;
+            this.height = height;
+            this.top = top;
+            this.left = left;
+            this.css = css!=null?css:"Default";
+            Console.WriteLine("~canvas~ created ");
+        }
+
+        public uint Width
         {
             get => width;
             set
             {
-                if (value >= 0)
-                {
-                    width = value;
-                    Update();
-                }
-            }
-        }
-        public int Heigth
-        {
-            get => heigth;
-            set
-            {
-                if (value >= 0)
-                {
-                    heigth = value;
-                    Update();
-                }
-            }
-        }
-        public string Style
-        {
-            get => style;
-            set
-            {
-                style = value != null ? value : "{}";
+                width = value;
                 Update();
             }
         }
-
+        public uint Height
+        {
+            get => height;
+            set
+            {
+                height = value;
+                Update();
+            }
+        }
         public int Left
         {
             get => left;
@@ -68,35 +76,50 @@ namespace Lab1
         }
         public int Top
         {
-            get => top; set
+            get => top;
+            set
             {
                 top = value;
                 Update();
             }
         }
-
-        public override void Draw()
+        public long Bottom
         {
-            if (isVisible && parent != null || this == Root)
+            get => top + height;
+        }
+        public long Rigth
+        {
+            get => left + width;
+        }
+        public string CSS
+        {
+            set
             {
-                Console.WriteLine("     =apply style '{0}' in frame [{1},{2}],[{3},{4}] to '{5}'", style, Left, Top, width, heigth, name);
-                base.Draw();
+                if (value != null)
+                {
+                    css = value;
+                    Update();
+                }
             }
+            get => css;
         }
-        public Canvas(int width = 0, int heigth = 0, int left = 0, int top = 0, string name = null) : base(name!=null?name:"canvas"+ID)
+        protected virtual void Render()
         {
-            this.width = width >= 0 ? width : 0;
-            this.heigth = heigth >= 0 ? heigth : 0;
-            this.left = left;
-            this.top = top;
+            stylyzer.apply(css);
+            Draw();
         }
-
-        public Canvas(string name) : this(0, 0, 0, 0, name) { }
-
-        //copy canvas
-        public Canvas(Canvas original) : this(original.width, original.heigth, original.left, original.top, original.name)
+        protected virtual void Draw()
         {
+            Console.WriteLine("~canvas~ draw canvas");
+        }
+        public virtual void Update()
+        {
+            Render();
         }
 
+        public override string ToString()
+        {
+            return this.GetType().Name;
+        }
     }
 }
