@@ -4,57 +4,56 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab1.UI.Button
+namespace Lab1.UI.Buttons
 {
-    abstract class Button : Canvas
+    abstract class Button : UINode
     {
-        //public Action OnClicked { get; set; }
-        //public Action OnReleased { get; set; }
-        //protected bool state;
-        //public bool State
-        //{
-        //    get => state;
-        //}
-        //public Label Text { get; set; }
-        //public virtual void Click()
-        //{
-        //    Update();
 
-        //    if (OnClicked != null && !state)
-        //    {
-        //        this.state = true;
-        //        OnClicked();
-        //    }
-        //}
-        //public virtual void Release()
-        //{
-        //    Update();
+        public override bool CanHaveChild()
+        {
+            return true;
+        }
+        public Action OnClicked { get; set; }
+        
+        protected bool state;
+        public bool State
+        {
+            get => state;
+        }
+        public string Text {
+            get {
+                return ((Label)base.getChild("caption")).Text;
+            }
+            set{
+                ((Label)base.getChild("caption")).Text = value;
+            }
+        }
 
-        //    if (OnReleased != null && state)
-        //    {
-        //        this.state = false;
-        //        OnReleased();
-        //    }
-        //}
-        //protected Button(string text = "New button",string name=null) : base(name!=null?name:"button"+ID)
-        //{
-        //    this.state = false;
-        //    OnClicked = null;
-        //    OnReleased = null;
-        //    Text = new Label(text, "description");
-        //    base.Add(Text);
-        //}
-        //public override bool Add(UINode node)
-        //{
-        //    return false;
-        //}
-        //public override bool Remove(UINode node)
-        //{
-        //    return false;
-        //}
-        //public override bool Remove(string name)
-        //{
-        //    return false;
-        //}
+        public virtual void Click()
+        {
+            Update();
+            if (OnClicked != null && !state)
+            {
+                this.state = true;
+                OnClicked();
+            }
+        }
+
+
+        protected override void Draw()
+        {
+            base.Draw();
+            Console.WriteLine("    button~ draw button: '{0}'", name);
+            
+        }
+        protected Button(string text = null,string css= null, string name = null, Action onClicked=null) : base(css,name)
+        {
+            Console.WriteLine("    button~ created '{0}'", this.name);
+            this.state = false;
+            this.OnClicked = onClicked;
+            Add(new Label(text!=null?text:"New button", this.CSS,"caption"));
+        }
     }
 }
+
+

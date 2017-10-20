@@ -22,7 +22,7 @@ namespace Lab1.UI
         {
             environment = System.DateTime.Today.ToShortTimeString();
             stylyzer = new CSSLoader();
-            Console.WriteLine("~canvas~ class loaded");
+            Console.WriteLine(" canvas~ class loaded");
         }
 
 
@@ -43,8 +43,12 @@ namespace Lab1.UI
             this.height = height;
             this.top = top;
             this.left = left;
-            this.css = css!=null?css:"Default";
-            Console.WriteLine("~canvas~ created ");
+            this.css = css!=null?css:DefaultStyle();
+            Console.WriteLine(" canvas~ created ");
+        }
+        public virtual string DefaultStyle()
+        {
+            return string.Format("Default {0} style",this.GetType().Name );
         }
 
         public uint Width
@@ -110,7 +114,7 @@ namespace Lab1.UI
         }
         protected virtual void Draw()
         {
-            Console.WriteLine("~canvas~ draw canvas");
+            Console.WriteLine(" canvas~ draw canvas");
         }
         public virtual void Update()
         {

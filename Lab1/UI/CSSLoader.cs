@@ -11,11 +11,11 @@ namespace Lab1.UI
 
         public CSSLoader()
         {
-            Console.WriteLine("  css~ CSSLoader created");
+            Console.WriteLine("css~ CSSLoader created");
         }
         public void apply(string css)
         {
-            Console.WriteLine("  css~ theme applied: '{0}'", css);
+            Console.WriteLine("css~ theme applied: '{0}'", css);
         }
     }
 }

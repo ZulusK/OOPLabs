@@ -42,7 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UI\buttons\Button.cs" />
+    <Compile Include="UI\Buttons\Button.cs" />
+    <Compile Include="UI\Buttons\PushButton.cs" />
     <Compile Include="UI\Canvas.cs" />
     <Compile Include="UI\CSSLoader.cs" />
     <Compile Include="UI\Label.cs" />

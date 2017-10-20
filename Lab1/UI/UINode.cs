@@ -14,18 +14,18 @@ namespace Lab1.UI
 
         static uint id;
         protected static uint ID { get => id++; }
-        protected static bool canHaveChild;
+        public virtual bool CanHaveChild() {
+            return true;
+        }
         static UINode uiRoot;
         protected UINode parent;
         protected Dictionary<string, UINode> children;
         protected string name;
-
-
+        
         static UINode()
         {
             Console.WriteLine("   node~ class loaded");
             id = 0;
-            canHaveChild = true;
             uiRoot = new UINode(800, 600, 0, 0, "Default Window theme","AppWindow");
         }
         public static UINode UIRoot { get => uiRoot; }
@@ -37,7 +37,7 @@ namespace Lab1.UI
         {
             get
             {
-                if (canHaveChild)
+                if (CanHaveChild())
                 {
                     return new Dictionary<string, UINode>(children);
                 }
@@ -48,18 +48,25 @@ namespace Lab1.UI
             }
         }
 
+
+        public virtual UINode getChild(string name)
+        {
+            return children[name];
+        }
+
+
         public string Name
         {
             get => name;
         }
-        public static bool CanHaveChild { get => canHaveChild; }
+        
         public virtual bool Remove(UINode child)
         {
             return Remove(child.name);
         }
         public virtual bool Remove(string childName)
         {
-            if (canHaveChild && children.ContainsKey(childName))
+            if (CanHaveChild() && children.ContainsKey(childName))
             {
                 children[childName].parent = null;
                 children.Remove(childName);
@@ -74,39 +81,47 @@ namespace Lab1.UI
         }
         public virtual bool Add(UINode child)
         {
-            if (canHaveChild &&  !children.ContainsKey(child.name))
+            if (child == this)
             {
-                if (child == parent)
-                {
-                    child.children.Remove(this.name);
-                    this.parent = null;
-                }
-                if (child.parent != null)
-                {
-                    child.parent.children.Remove(child.name);
-                }
-                children[child.name] = child;
-                child.parent = this;
-                Console.WriteLine("   node~ add child '{0}' to '{1}'", child.name, name);
-                Update();
-                return true;
+                return false;
             }
             else
             {
-                return false;
+                if (CanHaveChild() && !children.ContainsKey(child.name))
+                {
+                    if (child == parent)
+                    {
+                        child.children.Remove(this.name);
+                        this.parent = null;
+                    }
+                    if (child.parent != null)
+                    {
+                        child.parent.children.Remove(child.name);
+                    }
+                    children[child.name] = child;
+                    child.parent = this;
+                    Console.WriteLine("   node~ add child '{0}' to '{1}'", child.name, name);
+                    Update();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
         public virtual void Clear()
         {
-            if (canHaveChild)
+            if (CanHaveChild())
             {
                 Console.WriteLine("   node~ clear '{0}'", name);
                 children.Clear();
                 Update();
             }
         }
-
-        //update all ui tree
+        /// <summary>
+        /// update all ui tree
+        /// </summary>
         public override void Update()
         {
             Console.WriteLine("   node~ update '{0}'", name);
@@ -119,12 +134,13 @@ namespace Lab1.UI
             {
                 Render();
             }
+            
         }
 
         protected override sealed void Render()
         {
             base.Render();
-            if (canHaveChild)
+            if (CanHaveChild())
             {
                 foreach (var k in children)
                 {
@@ -132,16 +148,22 @@ namespace Lab1.UI
                 }
             }
         }
-        //draw current node
+
+        /// <summary>
+        /// draw current node
+        /// </summary>
         protected override void Draw()
         {
             base.Draw();
             Console.WriteLine("   node~ draw {0}", name);
         }
+
+        
+
         public UINode(uint width, uint heigth, int left, int top, string css = null,string name = null) : base(width, heigth, left, top,css) { 
-            this.name = name!=null?name: "UINode" + ID;
+            this.name = name!=null?name: string.Format("{0}_{1}",this.GetType().Name, ID);
             this.parent = null;
-            if (canHaveChild)
+            if (CanHaveChild())
             {
                 this.children = new Dictionary<string, UINode>();
                 Console.WriteLine("   node~ create dictionary '{0}'",this.name);
@@ -152,7 +174,6 @@ namespace Lab1.UI
         {
 
         }
-
         public override string ToString()
         {
             return this.GetType().Name +":"+ name;
