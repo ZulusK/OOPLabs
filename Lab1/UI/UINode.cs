@@ -76,6 +76,11 @@ namespace Lab1.UI
         {
             if (canHaveChild &&  !children.ContainsKey(child.name))
             {
+                if (child == parent)
+                {
+                    child.children.Remove(this.name);
+                    this.parent = null;
+                }
                 if (child.parent != null)
                 {
                     child.parent.children.Remove(child.name);

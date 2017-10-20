@@ -11,9 +11,9 @@ namespace Lab1
         //static void testNode()
         //{
 
-        //    Console.WriteLine("====================================================");
+        //    Console.WriteLine("===========================================================================================");
         //    Console.WriteLine("                  Test Node class");
-        //    Console.WriteLine("====================================================");
+        //    Console.WriteLine("===========================================================================================");
         //    UINode root = new UINode("root");
         //    UINode.Root.Add(root);
 
@@ -38,21 +38,29 @@ namespace Lab1
         //}
         static void testUINode()
         {
-            Console.WriteLine("====================================================");
+            Console.WriteLine("===========================================================================================");
             Console.WriteLine("                  Test UINode class");
-            Console.WriteLine("====================================================");
-            //UINode.UIRoot.Clear();
-            UINode node1 = new UINode(10, 20, 0, 4, "Metalic", "node1");
-            UINode.UIRoot.Add(node1);
+            Console.WriteLine("===========================================================================================");
             
-            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            UINode node1 = new UINode(10, 20, 0, 4, "Metalic", "node1");
+            Console.WriteLine("\n                Create new node and add it to root\n");
+            UINode.UIRoot.Add(node1);
+            Console.WriteLine("\n                 Create new node and render it\n");
+            UINode node2 = new UINode(null, "node2");
+            Console.WriteLine("\n                 Add node to another node\n");
+            node1.Add(node2);
+            Console.WriteLine("\n                 Add node to child\n");
+            node2.Add(node1);
+            Console.WriteLine("\n                 Add node to root\n");
+            UINode.UIRoot.Add(node2);
+            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         }
         static void testLabel()
         {
             //Canvas.UIRoot.Clear();
-            //Console.WriteLine("====================================================");
+            //Console.WriteLine("===========================================================================================");
             //Console.WriteLine("                  Test Label class");
-            //Console.WriteLine("====================================================");
+            //Console.WriteLine("===========================================================================================");
             //Label label = new Label("1234567890");
             //Canvas.UIRoot.Add(label);
             //label.Update();
@@ -74,9 +82,9 @@ namespace Lab1
         //static void testPushButton()
         //{
         //    UINode.Root.Clear();
-        //    Console.WriteLine("====================================================");
+        //    Console.WriteLine("===========================================================================================");
         //    Console.WriteLine("                  Test PushButton class");
-        //    Console.WriteLine("====================================================");
+        //    Console.WriteLine("===========================================================================================");
         //    PushButton b1 = new PushButton("b1");
         //    UINode.Root.Add(b1);
         //    b1.Click();
@@ -90,9 +98,9 @@ namespace Lab1
         //static void testRadioButton()
         //{
         //    UINode.Root.Clear();
-        //    Console.WriteLine("====================================================");
+        //    Console.WriteLine("===========================================================================================");
         //    Console.WriteLine("                  Test RadioButton class");
-        //    Console.WriteLine("====================================================");
+        //    Console.WriteLine("===========================================================================================");
         //    RadioButton b1 = new RadioButton("b1");
         //    UINode.Root.Add(b1);
         //    b1.Click();
@@ -107,9 +115,9 @@ namespace Lab1
         //static void testTextArea()
         //{
         //    UINode.Root.Clear();
-        //    Console.WriteLine("====================================================");
+        //    Console.WriteLine("===========================================================================================");
         //    Console.WriteLine("                  Test TextArea class");
-        //    Console.WriteLine("====================================================");
+        //    Console.WriteLine("===========================================================================================");
         //    TextArea t1 = new TextArea("0123456789012345678901234567890",3,5);
         //    UINode.Root.Add(t1);
 
