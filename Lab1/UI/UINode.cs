@@ -14,6 +14,7 @@ namespace Lab1.UI
 
         static uint id;
         protected static uint ID { get => id++; }
+        
         public virtual bool CanHaveChild() {
             return true;
         }
@@ -26,7 +27,8 @@ namespace Lab1.UI
         {
             Console.WriteLine("   node~ class loaded");
             id = 0;
-            uiRoot = new UINode(800, 600, 0, 0, "Default Window theme","AppWindow");
+            uiRoot = new UINode("AppWindow", "Default Window theme", 800, 600);
+            
         }
         public static UINode UIRoot { get => uiRoot; }
         public UINode Parent
@@ -130,7 +132,7 @@ namespace Lab1.UI
                 //goto to top
                 parent.Update();
             }
-            else if (this == uiRoot)
+            else if (this.isRoot==true)
             {
                 Render();
             }
@@ -158,11 +160,12 @@ namespace Lab1.UI
             Console.WriteLine("   node~ draw {0}", name);
         }
 
-        
+        bool isRoot;
 
         public UINode(uint width, uint heigth, int left, int top, string css = null,string name = null) : base(width, heigth, left, top,css) { 
             this.name = name!=null?name: string.Format("{0}_{1}",this.GetType().Name, ID);
             this.parent = null;
+            isRoot = false;
             if (CanHaveChild())
             {
                 this.children = new Dictionary<string, UINode>();
@@ -177,6 +180,16 @@ namespace Lab1.UI
         public override string ToString()
         {
             return this.GetType().Name +":"+ name;
+        }
+
+        private UINode(string name, string css,uint width, uint heigth):this(width,heigth,0,0,css,name)
+        {
+            this.isRoot = true;
+            
+        }
+        public static UINode CreateRootNode(uint width, uint height, string style, string name)
+        {
+            return new UINode(name ,style, width, height);
         }
     }
 }

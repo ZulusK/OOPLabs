@@ -114,7 +114,7 @@ namespace Lab1.UI
         }
         protected virtual void Draw()
         {
-            Console.WriteLine(" canvas~ draw canvas");
+            Console.WriteLine(" canvas~ draw canvas in rect[{0},{1}; {2},{3}]", Left,Top,Left+Width, Top+Height);
         }
         public virtual void Update()
         {

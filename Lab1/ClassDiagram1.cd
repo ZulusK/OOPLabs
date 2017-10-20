@@ -10,7 +10,7 @@
   <Class Name="Lab1.UI.Buttons.PushButton" Collapsed="true">
     <Position X="7.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAABAAAAAAAAAAAAAABAAAAA=</HashCode>
       <FileName>UI\Buttons\PushButton.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -22,7 +22,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Lab1.UI.CSSLoader" Collapsed="true">
-    <Position X="12.5" Y="0.5" Width="1.5" />
+    <Position X="11" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>UI\CSSLoader.cs</FileName>
@@ -38,22 +38,15 @@
   <Class Name="Lab1.UI.UINode" Collapsed="true">
     <Position X="8.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAYAAAAAAAAAggREAAAERAQCAAAEAAAAAFAQAABAAgA=</HashCode>
+      <HashCode>AAYAAAAAAAAAggREAAAERAQCAAAFAAABAFAQAABAAgA=</HashCode>
       <FileName>UI\UINode.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Lab1.UI.Text.ScrollFrame" Collapsed="true">
-    <Position X="5.5" Y="1.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAgAIAAAACAAAAAAAAAAAAAAACAAAAAAAACAAAAAA=</HashCode>
-      <FileName>UI\text\ScrollFrame.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Lab1.UI.Text.TextArea" Collapsed="true">
+  <Class Name="Lab1.UI.Widgets.Widget" Collapsed="true">
     <Position X="5.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAACACAAAA=</HashCode>
-      <FileName>UI\text\TextArea.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAABCA=</HashCode>
+      <FileName>UI\Widgets\Widget.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

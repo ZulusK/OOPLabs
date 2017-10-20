@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Lab1.UI;
 using Lab1.UI.Buttons;
+using Lab1.UI.Widgets;
 namespace Lab1
 {
     class Program
@@ -76,42 +77,28 @@ namespace Lab1
             Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
         }
-        //static void testRadioButton()
-        //{
-        //    UINode.Root.Clear();
-        //    Separate();
-        //    Console.WriteLine("                  Test RadioButton class");
-        //    Separate();
-        //    RadioButton b1 = new RadioButton("b1");
-        //    UINode.Root.Add(b1);
-        //    b1.Click();
-        //    b1.OnClicked = Foo;
-        //    b1.OnStateChange = Bar;
-        //    b1.Release();
+        
+        static void testWidget()
+        {
+            Separate();
+            Console.WriteLine("                  Test PushButton class");
+            Separate();
+            var root = UINode.CreateRootNode(1000, 600, null, "WINDOW");
+            Console.WriteLine("\n                Create new widget and add it to root\n");
+            Widget widget = new Widget(200,300,0,0,null,"w1","red circle","orange square","yellow triangle");
+            root.Add(widget);
+            Console.WriteLine("\n                Add new shape to widget\n");
+            widget.addShape("green dot");
+            
+            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        }
 
-        //    ((Button)b1).Click();
-        //    Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++");
-
-        //}
-        //static void testTextArea()
-        //{
-        //    UINode.Root.Clear();
-        //    Separate();
-        //    Console.WriteLine("                  Test TextArea class");
-        //    Separate();
-        //    TextArea t1 = new TextArea("0123456789012345678901234567890",3,5);
-        //    UINode.Root.Add(t1);
-
-        //    Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++");
-
-        //}
         static void Main(string[] args)
         {
             testUINode();
             testLabel();
             testPushButton();
-            //testRadioButton();
-            //testTextArea();
+            testWidget();
             Console.ReadLine();
         }
     }

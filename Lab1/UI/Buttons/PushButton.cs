@@ -18,6 +18,13 @@ namespace Lab1.UI.Buttons
                 OnReleased();
             }
         }
+
+        protected override void Draw()
+        {
+            base.Draw();
+            Console.WriteLine("     pushButton~ draw pushButton: '{0}'", name);
+
+        }
         public PushButton(string caption="New PushButton", Action onClicked = null, Action onReleased = null,string css=null,string name = null):base(caption,css,name, onClicked)
         {
             this.OnReleased = onReleased;
