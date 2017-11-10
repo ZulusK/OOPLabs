@@ -55,9 +55,10 @@ namespace Lab2
             Console.WriteLine("Foo: sender {0}, args: {1}", sender!=null?sender:"null",args);
         }
 
-        static void Bar()
+        static void Bar(object sender, MouseEventArgs args)
         {
-            Console.WriteLine("Bar");
+            Console.WriteLine("Bar: sender {0}, args: {1}", sender != null ? sender : "null", args);
+
         }
         static void testPushButton()
         {
@@ -70,11 +71,16 @@ namespace Lab2
             UINode.UIRoot.Add(b1);
             Console.WriteLine("\n                Click the button\n");
             b1.Click();
+
             Console.WriteLine("\n                Add action to the button and release it\n");
             b1.OnClick += Foo;
-
-            b1.OnReleased += Bar;
             b1.Release();
+            b1.Click();
+
+
+            b1.OnRelease += Bar;
+            b1.Release();
+
             Console.WriteLine("\n                Click the (Button)PushButton\n");
             ((Button)b1).Click();
             Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++");

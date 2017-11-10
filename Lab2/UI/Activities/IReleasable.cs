@@ -8,13 +8,13 @@ namespace Lab2.UI.Activities
 {
     interface IReleasable
     {
-        bool IsReleased { get;}
-        Action OnReleased
+        bool IsReleased
         {
             get;
-            set;
         }
 
-        void Release();
+        event MouseEventHandler OnRelease;
+
+        void Release(object sender = null, MouseEventArgs args = null);
     }
 }

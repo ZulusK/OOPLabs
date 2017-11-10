@@ -8,7 +8,7 @@ using Lab2.UI.Activities;
 
 namespace Lab2.UI.Buttons
 {
-    abstract class Button : UINode, IClickable, IReleasable
+    abstract class Button : UINode, IClickable
     {
         public event MouseEventHandler OnClick;
 
@@ -16,18 +16,7 @@ namespace Lab2.UI.Buttons
         {
             return true;
         }
-        public Action OnReleased { get; set; }
 
-        public bool IsClicked
-        {
-            get;
-            protected set;
-        }
-        public bool IsReleased
-        {
-            get;
-            protected set;
-        }
 
         public string Text
         {
@@ -43,35 +32,15 @@ namespace Lab2.UI.Buttons
 
         public virtual void Click(object sender = null, MouseEventArgs args = null)
         {
-            if (!IsClicked)
+            Console.WriteLine("    button~ clicked '{0}'", this.name);
+            Update();
+
+            if (OnClick != null)
             {
-                this.IsClicked = true;
-                this.IsReleased = false;
-                Console.WriteLine("    button~ clicked '{0}'", this.name);
-                Update();
-
-                if (OnClick != null)
-                {
-                    OnClick(sender, args != null ? args : new MouseEventArgs());
-                }
+                OnClick(sender, args != null ? args : new MouseEventArgs());
             }
-
         }
-        public virtual void Release()
-        {
-            if (!IsReleased)
-            {
-                this.IsReleased = true;
-                this.IsClicked = false;
-                Console.WriteLine("    button~ released '{0}'", this.name);
-                Update();
-                if (OnReleased != null)
-                {
-                    OnReleased();
-                }
-            }
 
-        }
 
         protected override void Draw()
         {
@@ -79,11 +48,12 @@ namespace Lab2.UI.Buttons
             Console.WriteLine("    button~ draw button: '{0}'", name);
 
         }
+
+
         protected Button(string text = null, string css = null, string name = null) : base(css, name)
         {
             Console.WriteLine("    button~ created '{0}'", this.name);
-            this.IsClicked = false;
-            this.IsReleased = true;
+
             Add(new Label(text != null ? text : "New button", this.CSS, "caption"));
         }
     }

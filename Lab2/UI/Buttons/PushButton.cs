@@ -8,51 +8,45 @@ using Lab2.UI.Activities;
 namespace Lab2.UI.Buttons
 {
 
-    class PushButton : Button, IHoverable
+    class PushButton : Button, IReleasable
     {
-        public bool IsHovered
+        public event MouseEventHandler OnRelease;
+        public bool IsReleased
         {
             get;
             protected set;
         }
 
-        public Action OnHover { get; set; }
 
+        public virtual void Release(object sender = null, MouseEventArgs args = null)
+        {
+            if (!IsReleased)
+            {
+                this.IsReleased = true;
+                Console.WriteLine("    button~ released '{0}'", this.name);
+                Update();
+                if (OnRelease != null)
+                {
+                    OnRelease(sender, args != null ? args : new MouseEventArgs());
+                }
+            }
+        }
+
+        public override void Click(object sender = null, MouseEventArgs args = null)
+        {
+            this.IsReleased = false;
+            base.Click(sender, args);
+        }
         protected override void Draw()
         {
             base.Draw();
             Console.WriteLine("     pushButton~ draw pushButton: '{0}'", name);
         }
 
-        public void Hover()
-        {
-            if (!IsHovered)
-            {
-                IsHovered = true;
-                Console.WriteLine("     pushButton~ hovered '{0}'", this.name);
-                Update();
-                if (OnHover != null)
-                {
-                    OnHover();
-                }
-            }
-
-        }
-
-        public void Unhover()
-        {
-            if (!IsHovered)
-            {
-                IsHovered = false;
-                Console.WriteLine("     pushButton~ unhovered '{0}'", this.name);
-
-            }
-        }
-
         public PushButton(string caption = "New PushButton", string css = null, string name = null) : base(caption, css, name)
         {
             Console.WriteLine("     pushButton~ created '{0}'", this.name);
-            this.IsHovered = false;
+            this.IsReleased = true;
         }
     }
 }

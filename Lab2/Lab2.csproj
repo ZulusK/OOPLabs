@@ -48,7 +48,6 @@
     <Compile Include="UI\Activities\MouseEventArgs.cs" />
     <Compile Include="UI\Buttons\Button.cs" />
     <Compile Include="UI\Activities\IClickable.cs" />
-    <Compile Include="UI\Activities\IHoverable.cs" />
     <Compile Include="UI\Activities\IReleasable.cs" />
     <Compile Include="UI\Buttons\PushButton.cs" />
     <Compile Include="UI\Canvas.cs" />
