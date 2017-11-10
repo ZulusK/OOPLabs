@@ -12,9 +12,15 @@ namespace Lab2.UI
         //static constructor to load and initialize static data
         //when class had been loaded
 
+        static uint name_id;
         static uint id;
-        protected static uint ID { get => id++; }
-        
+        public uint ID
+        {
+            get;
+        }
+        protected static uint NextNameID { get => name_id++; }
+        protected static uint NextID { get => id++; }
+
         public virtual bool CanHaveChild() {
             return true;
         }
@@ -157,13 +163,13 @@ namespace Lab2.UI
         protected override void Draw()
         {
             base.Draw();
-            Console.WriteLine("   node~ draw {0}", name);
+            Console.WriteLine("   node~ draw {0}[{1}]", name,ID);
         }
 
         bool isRoot;
 
         public UINode(uint width, uint heigth, int left, int top, string css = null,string name = null) : base(width, heigth, left, top,css) { 
-            this.name = name!=null?name: string.Format("{0}_{1}",this.GetType().Name, ID);
+            this.name = name!=null?name: string.Format("{0}_{1}",this.GetType().Name, NextNameID);
             this.parent = null;
             isRoot = false;
             if (CanHaveChild())
@@ -171,6 +177,7 @@ namespace Lab2.UI
                 this.children = new Dictionary<string, UINode>();
                 Console.WriteLine("   node~ create dictionary '{0}'",this.name);
             }
+            this.ID = NextID;
             Console.WriteLine("   node~ created '{0}'", this.name);
         }
         public UINode(string css = null,string name=null) : this(0,0,0,0,css,name)
@@ -179,7 +186,7 @@ namespace Lab2.UI
         }
         public override string ToString()
         {
-            return this.GetType().Name +":"+ name;
+            return this.GetType().Name +":"+ name+"["+ID+"]";
         }
 
         private UINode(string name, string css,uint width, uint heigth):this(width,heigth,0,0,css,name)

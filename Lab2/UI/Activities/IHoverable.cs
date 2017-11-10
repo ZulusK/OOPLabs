@@ -4,22 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab2.UI.Buttons
+namespace Lab2.UI.Activities
 {
-    interface IClickable
+    interface IHoverable
     {
-        bool IsClicked
+        bool IsHovered
         {
             get;
         }
-        Action OnClicked
+        Action OnHover
         {
-            get;
             set;
+            get;
         }
-
-        void Click();
-
-
+        void Hover();
+        void Unhover();
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Lab2.UI.Activities;
 
 namespace Lab2.UI.Buttons
 {
@@ -28,24 +29,27 @@ namespace Lab2.UI.Buttons
             if (!IsHovered)
             {
                 IsHovered = true;
+                Console.WriteLine("     pushButton~ hovered '{0}'", this.name);
+                Update();
+                if (OnHover != null)
+                {
+                    OnHover();
+                }
             }
-            Update();
 
-            if (OnHover != null)
-            {
-                OnHover();
-            }
         }
 
         public void Unhover()
         {
             if (!IsHovered)
             {
-                IsHovered = true;
+                IsHovered = false;
+                Console.WriteLine("     pushButton~ unhovered '{0}'", this.name);
+
             }
         }
 
-        public PushButton(string caption = "New PushButton", Action onClicked = null, string css = null, string name = null) : base(caption, css, name, onClicked)
+        public PushButton(string caption = "New PushButton", string css = null, string name = null) : base(caption, css, name)
         {
             Console.WriteLine("     pushButton~ created '{0}'", this.name);
             this.IsHovered = false;

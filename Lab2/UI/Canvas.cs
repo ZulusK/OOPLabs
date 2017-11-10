@@ -9,6 +9,7 @@ namespace Lab2.UI
 
     abstract class Canvas
     {
+        
         static string environment;
         static CSSLoader stylyzer;
 

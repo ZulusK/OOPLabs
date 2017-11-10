@@ -4,20 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab2.UI.Buttons
+namespace Lab2.UI.Activities
 {
-    interface IHoverable
+    interface IReleasable
     {
-        bool IsHovered
+        bool IsReleased { get;}
+        Action OnReleased
         {
             get;
-        }
-        Action OnHover
-        {
             set;
-            get;
         }
-        void Hover();
-        void Unhover();
+
+        void Release();
     }
 }

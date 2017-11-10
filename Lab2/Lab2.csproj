@@ -44,10 +44,12 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Activities\Entities.cs" />
+    <Compile Include="UI\Activities\MouseEventArgs.cs" />
     <Compile Include="UI\Buttons\Button.cs" />
-    <Compile Include="UI\Buttons\IClickable.cs" />
-    <Compile Include="UI\Buttons\IHoverable.cs" />
-    <Compile Include="UI\Buttons\IReleaseble.cs" />
+    <Compile Include="UI\Activities\IClickable.cs" />
+    <Compile Include="UI\Activities\IHoverable.cs" />
+    <Compile Include="UI\Activities\IReleasable.cs" />
     <Compile Include="UI\Buttons\PushButton.cs" />
     <Compile Include="UI\Canvas.cs" />
     <Compile Include="UI\CSSLoader.cs" />

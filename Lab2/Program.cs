@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Lab2.UI;
 using Lab2.UI.Buttons;
 using Lab2.UI.Widgets;
+using Lab2.UI.Activities;
+
 namespace Lab2
 {
     class Program
@@ -20,7 +22,7 @@ namespace Lab2
             Separate();
             Console.WriteLine("                  Test UINode class");
             Separate();
-            
+
             UINode node1 = new UINode(10, 20, 0, 4, "Metalic", "node1");
             Console.WriteLine("\n                Create new node and add it to root\n");
             UINode.UIRoot.Add(node1);
@@ -40,17 +42,17 @@ namespace Lab2
             Console.WriteLine("                  Test Label class");
             Separate();
             UINode.UIRoot.Clear();
-            Label label1 = new Label("1234","Label style","label1");
+            Label label1 = new Label("1234", "Label style", "label1");
             Console.WriteLine("\n                Create new label and add it to root\n");
             UINode.UIRoot.Add(label1);
             Console.WriteLine("\n                Try to add child to label\n");
-            Console.WriteLine("add node: {0}",label1.Add(new UINode()));
+            Console.WriteLine("add node: {0}", label1.Add(new UINode()));
             Console.WriteLine("add label: {0}", label1.Add(new Label()));
             Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         }
-        static void Foo()
+        static void Foo(object sender,MouseEventArgs args) 
         {
-            Console.WriteLine("Foo");
+            Console.WriteLine("Foo: sender {0}, args: {1}", sender!=null?sender:"null",args);
         }
 
         static void Bar()
@@ -60,24 +62,25 @@ namespace Lab2
         static void testPushButton()
         {
             Separate();
-                        Console.WriteLine("                  Test PushButton class");
+            Console.WriteLine("                  Test PushButton class");
             Separate();
             UINode.UIRoot.Clear();
             Console.WriteLine("\n                Create new button and add it to root\n");
-            PushButton b1 = new PushButton("Button caption",null,null,null,"b1");
+            PushButton b1 = new PushButton("Button caption", null, "b1");
             UINode.UIRoot.Add(b1);
             Console.WriteLine("\n                Click the button\n");
             b1.Click();
             Console.WriteLine("\n                Add action to the button and release it\n");
-            b1.OnClicked = Foo;
-            b1.OnReleased = Bar;
+            b1.OnClick += Foo;
+
+            b1.OnReleased += Bar;
             b1.Release();
             Console.WriteLine("\n                Click the (Button)PushButton\n");
             ((Button)b1).Click();
             Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
         }
-        
+
         static void testWidget()
         {
             Separate();
@@ -85,20 +88,20 @@ namespace Lab2
             Separate();
             var root = UINode.CreateRootNode(1000, 600, null, "WINDOW");
             Console.WriteLine("\n                Create new widget and add it to root\n");
-            Widget widget = new Widget(200,300,0,0,null,"w1","red circle","orange square","yellow triangle");
+            Widget widget = new Widget(200, 300, 0, 0, null, "w1", "red circle", "orange square", "yellow triangle");
             root.Add(widget);
             Console.WriteLine("\n                Add new shape to widget\n");
             widget.addShape("green dot");
-            
+
             Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++");
         }
 
         static void Main(string[] args)
         {
-            testUINode();
-            testLabel();
+            //testUINode();
+            //testLabel();
             testPushButton();
-            testWidget();
+            //testWidget();
             Console.ReadLine();
         }
     }
