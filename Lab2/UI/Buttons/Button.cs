@@ -17,7 +17,7 @@ namespace Lab2.UI.Buttons
             return false;
         }
 
-        Label label;
+        protected Label label;
         public string Text
         {
             get

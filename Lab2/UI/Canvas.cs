@@ -117,10 +117,7 @@ namespace Lab2.UI
         {
             Console.WriteLine(" canvas~ draw canvas in rect[{0},{1}; {2},{3}]", Left,Top,Left+Width, Top+Height);
         }
-        public virtual void Update()
-        {
-            Render();
-        }
+        public abstract void Update();
 
         public override string ToString()
         {
