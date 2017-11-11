@@ -14,19 +14,19 @@ namespace Lab2.UI.Buttons
 
         public override bool CanHaveChild()
         {
-            return true;
+            return false;
         }
 
-
+        Label label;
         public string Text
         {
             get
             {
-                return ((Label)base.getChild("caption")).Text;
+                return label.Text;
             }
             set
             {
-                ((Label)base.getChild("caption")).Text = value;
+                label.Text = value;
             }
         }
 
@@ -40,7 +40,7 @@ namespace Lab2.UI.Buttons
                 OnClick(sender, args != null ? args : new MouseEventArgs());
             }
         }
-
+        
 
         protected override void Draw()
         {
@@ -54,7 +54,7 @@ namespace Lab2.UI.Buttons
         {
             Console.WriteLine("    button~ created '{0}'", this.name);
 
-            Add(new Label(text != null ? text : "New button", this.CSS, "caption"));
+            this.label=new Label(text != null ? text : "New button", this.CSS, "caption");
         }
     }
 }

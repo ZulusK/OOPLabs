@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lab2.UI.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -87,7 +88,7 @@ namespace Lab2.UI
                 return false;
             }
         }
-        public virtual bool Add(UINode child)
+        public virtual bool Add(UINode child, bool update=false)
         {
             if (child == this)
             {
@@ -109,7 +110,7 @@ namespace Lab2.UI
                     children[child.name] = child;
                     child.parent = this;
                     Console.WriteLine("   node~ add child '{0}' to '{1}'", child.name, name);
-                    Update();
+                    if(update) Update();
                     return true;
                 }
                 else
@@ -141,6 +142,10 @@ namespace Lab2.UI
             else if (this.isRoot==true)
             {
                 Render();
+            }
+            else
+            {
+                throw new NodeNotAddedToRootException(new NodeNotAddedToRootExceptionArgs(this, uiRoot));
             }
             
         }

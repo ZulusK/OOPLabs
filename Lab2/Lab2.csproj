@@ -52,7 +52,9 @@
     <Compile Include="UI\Buttons\PushButton.cs" />
     <Compile Include="UI\Canvas.cs" />
     <Compile Include="UI\CSSLoader.cs" />
+    <Compile Include="UI\Exceptions\NodeNotAddedToRootException.cs" />
     <Compile Include="UI\Label.cs" />
+    <Compile Include="UI\Layers\Layer.cs" />
     <Compile Include="UI\UINode.cs" />
     <Compile Include="UI\Widgets\Widget.cs" />
   </ItemGroup>

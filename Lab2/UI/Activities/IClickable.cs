@@ -7,7 +7,7 @@ namespace Lab2.UI.Activities
 {
     interface IClickable
     {
-     
+
         event MouseEventHandler OnClick;
 
         void Click(object sender = null, MouseEventArgs args = null);
