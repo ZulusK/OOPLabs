@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lab2.UI
 {
-    public class UINode:Canvas
+    public class UINode:Canvas,IComparable
     {
 
         //static constructor to load and initialize static data
@@ -202,6 +202,13 @@ namespace Lab2.UI
         public static UINode CreateRootNode(uint width, uint height, string style, string name)
         {
             return new UINode(name ,style, width, height);
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (obj == null) return 1;
+            UINode nobj = obj as UINode;
+            return this.name.CompareTo(nobj.name);
         }
     }
 }

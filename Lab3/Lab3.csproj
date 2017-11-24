@@ -59,7 +59,10 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\CheckButton.cs" />
+    <Compile Include="UI\Buttons\CheckButton.cs" />
+    <Compile Include="UI\Form.cs" />
+    <Compile Include="UI\Input\InputEventArgs.cs" />
+    <Compile Include="UI\Input\TextInput.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
