@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab2.UI
 {
-    class CSSLoader
+    public class CSSLoader
     {
 
         public CSSLoader()

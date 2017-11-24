@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lab2.UI
 {
-     class UINode:Canvas
+    public class UINode:Canvas
     {
 
         //static constructor to load and initialize static data

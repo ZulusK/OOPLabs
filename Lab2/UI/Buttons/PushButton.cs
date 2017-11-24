@@ -8,7 +8,7 @@ using Lab2.UI.Activities;
 namespace Lab2.UI.Buttons
 {
 
-    class PushButton : Button, IReleasable
+    public class PushButton : Button, IReleasable
     {
         public event MouseEventHandler OnRelease;
         public bool IsReleased

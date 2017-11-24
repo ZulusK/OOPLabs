@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Lab2.UI.Layers
 {
-    enum Align { VERTICAL, CENTER, HORIZONTAL, NONE };
-    class Layer<T> : UINode where T : UINode
+    public enum Align { VERTICAL, CENTER, HORIZONTAL, NONE };
+    public class Layer<T> : UINode where T : UINode
     {
         public Align Align
         {

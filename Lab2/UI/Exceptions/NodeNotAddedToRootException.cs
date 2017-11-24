@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab2.UI.Exceptions
 {
-    class NodeNotAddedToRootExceptionArgs
+    public class NodeNotAddedToRootExceptionArgs
     {
         public UINode CurrNode
         {
@@ -28,7 +28,7 @@ namespace Lab2.UI.Exceptions
             this.Msg = msg;
         }
     }
-    class NodeNotAddedToRootException:Exception
+    public class NodeNotAddedToRootException :Exception
     {
 
         public NodeNotAddedToRootExceptionArgs Args

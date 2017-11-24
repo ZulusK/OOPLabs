@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab2.UI.Widgets
 {
-    class Widget : UINode
+    public class Widget : UINode
     {
         protected List<string> shapes;
         public void addShape(string shape)

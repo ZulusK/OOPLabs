@@ -8,7 +8,7 @@ using Lab2.UI.Activities;
 
 namespace Lab2.UI.Buttons
 {
-    abstract class Button : UINode, IClickable
+    public abstract class Button : UINode, IClickable
     {
         public event MouseEventHandler OnClick;
 

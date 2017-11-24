@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Lab2.UI.Activities
 {
-    interface IClickable
+    public interface IClickable
     {
 
         event MouseEventHandler OnClick;

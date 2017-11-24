@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab2.UI.Activities
 {
-    interface IReleasable
+    public interface IReleasable
     {
         bool IsReleased
         {

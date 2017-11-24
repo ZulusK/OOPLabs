@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Lab2.UI.Activities
 {
 
-    class MouseEventArgs
+    public class MouseEventArgs
     {
         public MouseButton PressedButton
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab2.UI
 {
-    class Label : UINode
+    public class Label : UINode
     {
         
         protected string text;
