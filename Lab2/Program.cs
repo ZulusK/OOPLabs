@@ -44,7 +44,7 @@ namespace Lab2
             Console.WriteLine("\n                Add action to the button and release it\n");
             b1.OnClick += Foo;
             b1.Release();
-            b1.Click(null, new MouseEventArgs(10, 14, MouseButton.LEFT, KeyboardKey.LCTRL, KeyboardKey.RSHIFT));
+            b1.Click(null, new MouseEventArgs(10, 14, MouseButton.LEFT,KeyboardKey.LCTRL|KeyboardKey.RSHIFT));
 
 
             b1.OnRelease += Bar;

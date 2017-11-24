@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Lab2.UI
 {
+    [Serializable]
 
-    public  abstract class Canvas
+    public abstract class Canvas
     {
         
         static string environment;

@@ -9,9 +9,20 @@ using Lab2.UI.Activities;
 using Lab3.UI.Buttons;
 using Lab3.UI.Input;
 using Lab3.UI;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace Lab3
-{
+{   
+    static class Extention
+    {
+        public static bool isValid(this InputEventArgs input)
+        {
+            return !input.Text.StartsWith("$");
+        }
+    }
     class Program
     {
         static void Separate()
@@ -24,7 +35,7 @@ namespace Lab3
             Console.WriteLine("                      Test Anonimous methods");
             Separate();
 
-            var root=UINode.CreateRootNode(1000, 1000,"default style", "root");
+            var root = UINode.CreateRootNode(1000, 1000, "default style", "root");
             var button = new PushButton("pushButton1");
             root.Add(button);
             var counter = 0;
@@ -36,7 +47,7 @@ namespace Lab3
             {
                 Console.WriteLine("Released {0}", counter++);
             };
-            for(int i=0; i<3; i++)
+            for (int i = 0; i < 3; i++)
             {
                 button.Click();
                 button.Release();
@@ -53,13 +64,13 @@ namespace Lab3
             var button = new CheckButton("checkButton1");
             root.Add(button);
             var counter = 0;
-            button.OnClick +=(object sender, MouseEventArgs args)=>
-            {
-                Console.WriteLine("Pushed {0}", counter++);
-            };
+            button.OnClick += (object sender, MouseEventArgs args) =>
+             {
+                 Console.WriteLine("Pushed {0}, {1}", counter++, args);
+             };
             for (int i = 0; i < 3; i++)
             {
-                button.Click();
+                button.Click(new MouseEventArgs(0, 0, MouseButton.LEFT, KeyboardKey.LALT | KeyboardKey.RALT | KeyboardKey.SPACE));
             }
         }
 
@@ -72,9 +83,9 @@ namespace Lab3
             var root = UINode.CreateRootNode(1000, 1000, "default style", "root");
             var input = new TextInput("input");
             root.Add(input);
-            input.Validator = (args) => { return args.Text[0] != '$'; };
-            input.onInput += (object sender, InputEventArgs args) => { Console.WriteLine("Input: {0}",args); };
-            input.input(new InputEventArgs("test_1"));
+            input.Validator = (args) => { return args.isValid(); };
+            input.onInput += (object sender, InputEventArgs args) => { Console.WriteLine("Input: {0}", args); };
+            input.input(new InputEventArgs("test_1", KeyboardKey.LALT | KeyboardKey.RALT | KeyboardKey.SPACE));
             input.input(new InputEventArgs("$test_2"));
         }
 
@@ -92,18 +103,50 @@ namespace Lab3
             form.Add(new TextInput());
             form.Add(new CheckButton());
 
-            foreach(UINode node in form)
+            foreach (UINode node in form)
             {
                 Console.WriteLine(node);
+            }
+        }
+        
+        static void testSerialize()
+        {
+            Separate();
+            Console.WriteLine("                      Test Serialize");
+            Separate();
+            var root = UINode.CreateRootNode(1000, 1000, "default style", "root");
+            var subroot = new UINode("form");
+            root.Add(subroot);
+            subroot.Add(new UINode());
+            subroot.Add(new UINode());
+
+            XmlSerializer serializer =
+     new XmlSerializer(typeof(UINode));
+
+            FileStream fs = new FileStream("DataFile.xml", FileMode.Create);
+            try
+            {
+                serializer.Serialize(fs, root);
+            }
+            catch (SerializationException e)
+            {
+                Console.WriteLine("Failed to serialize. Reason: " + e.Message);
+                throw;
+            }
+            finally
+            {
+                fs.Close();
             }
         }
 
         static void Main(string[] args)
         {
-            testAnonimous();
-            testLambdaAction();
-            testFunc();
-            testForm();
+            //testAnonimous();
+            //testLambdaAction();
+            //testFunc();
+            //testForm();
+            testSerialize();
+            //testDesearialize();
             Console.ReadLine();
         }
     }

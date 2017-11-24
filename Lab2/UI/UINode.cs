@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace Lab2.UI
 {
+    [Serializable]
+
     public class UINode:Canvas,IComparable
     {
 
@@ -139,7 +141,7 @@ namespace Lab2.UI
                 //goto to top
                 parent.Update();
             }
-            else if (this.isRoot==true)
+            else if (this.isRoot)
             {
                 Render();
             }
@@ -189,6 +191,8 @@ namespace Lab2.UI
         {
 
         }
+        
+
         public override string ToString()
         {
             return this.GetType().Name +":"+ name+"["+ID+"]";
@@ -210,5 +214,9 @@ namespace Lab2.UI
             UINode nobj = obj as UINode;
             return this.name.CompareTo(nobj.name);
         }
+
+        
     }
+
+    
 }

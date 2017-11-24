@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace Lab2.UI.Activities
 {
     public   enum MouseButton { LEFT, MIDDLE, RIGHT, NONE };
-    public enum KeyboardKey { LSHIFT, LCTRL, LALT, SPACE, RSHIFT, RCTRL, RALT };
+    [Flags]
+    public enum KeyboardKey {LSHIFT=1, LCTRL=2, LALT=4, SPACE=8, RSHIFT=16, RCTRL=32, RALT=64, NONE=128 };
 
     public delegate void MouseEventHandler(object sender, MouseEventArgs args);
 }
