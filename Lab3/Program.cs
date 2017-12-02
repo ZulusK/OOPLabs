@@ -13,6 +13,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
+using System.Xml;
 
 namespace Lab3
 {   
@@ -108,25 +109,15 @@ namespace Lab3
                 Console.WriteLine(node);
             }
         }
-        
-        static void testSerialize()
+        static void SerializeBin(UINode root)
         {
-            Separate();
-            Console.WriteLine("                      Test Serialize");
-            Separate();
-            var root = UINode.CreateRootNode(1000, 1000, "default style", "root");
-            var subroot = new UINode("form");
-            root.Add(subroot);
-            subroot.Add(new UINode());
-            subroot.Add(new UINode());
+            BinaryFormatter serializer = new BinaryFormatter();
 
-            XmlSerializer serializer =
-     new XmlSerializer(typeof(UINode));
-
-            FileStream fs = new FileStream("DataFile.xml", FileMode.Create);
+            FileStream fs = new FileStream("DataFile.dat", FileMode.Create);
             try
             {
                 serializer.Serialize(fs, root);
+                Console.WriteLine("Serialized");
             }
             catch (SerializationException e)
             {
@@ -137,6 +128,68 @@ namespace Lab3
             {
                 fs.Close();
             }
+        }
+        static void DeserializeBin()
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            UINode node;
+            using (FileStream fs = new FileStream("DataFile.dat", FileMode.Open))
+            {
+                node = (UINode)formatter.Deserialize(fs);
+                Console.WriteLine("Deserialized");
+            }
+            node.Update();
+
+        }
+        static void SerializeXML(UINode root)
+        {
+            var dcs = new DataContractSerializer(typeof(UINode), new List<Type>(),64,true,true, null);
+            
+            using (FileStream fs = new FileStream("DataFile.xml", FileMode.Create))
+            {
+                dcs.WriteObject(fs, root);
+                Console.WriteLine("Serialized");
+            }
+        }
+        static void DeserializeXML()
+        {
+            UINode root;
+            var dcs = new DataContractSerializer(typeof(UINode));
+            using (FileStream fs = new FileStream("DataFile.xml", FileMode.Open))
+            {
+                using (var reader = XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas()))
+                {
+
+                    root = (UINode)dcs.ReadObject(reader);
+                    Console.WriteLine("Deserialized");
+                }
+            }
+
+            root.Update();
+        }
+        static void testSerialize()
+        {
+            Separate();
+            Console.WriteLine("                      Test Serialize");
+            Separate();
+            var root = UINode.CreateRootNode(1000, 1000, "default style", "root");
+            var subroot = new UINode("form");
+            root.Add(subroot);
+            subroot.Add(new UINode("1"));
+            subroot.Add(new UINode("2"));
+            Separate();
+            Console.WriteLine("                      Start bin");
+            Separate();
+            root.Update();
+            Separate();
+
+            SerializeBin(root);
+            DeserializeBin();
+            Separate();
+            Console.WriteLine("                      Start xml");
+            Separate();
+            SerializeXML(root);
+            DeserializeXML();
         }
 
         static void Main(string[] args)

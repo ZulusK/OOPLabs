@@ -4,23 +4,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Runtime.Serialization;
 namespace Lab2.UI
-{
-    [Serializable]
-
+{   [Serializable]
+    [DataContract]
     public class UINode:Canvas,IComparable
     {
 
         //static constructor to load and initialize static data
         //when class had been loaded
-
+        [DataMember]
         static uint name_id;
+        [DataMember]
         static uint id;
+
+
         public uint ID
         {
             get;
         }
+
         protected static uint NextNameID { get => name_id++; }
         protected static uint NextID { get => id++; }
 
@@ -28,8 +31,11 @@ namespace Lab2.UI
             return true;
         }
         static UINode uiRoot;
+        [DataMember]
         protected UINode parent;
-        protected Dictionary<string, UINode> children;
+        [DataMember]
+        protected Dictionary<string, UINode> children= new Dictionary<string, UINode>();
+        [DataMember]
         protected string name;
         
         static UINode()
@@ -38,12 +44,14 @@ namespace Lab2.UI
             id = 0;
             uiRoot = new UINode("AppWindow", "Default Window theme", 800, 600);
             
+            
         }
         public static UINode UIRoot { get => uiRoot; }
         public UINode Parent
         {
             get => parent;
         }
+       
         public Dictionary<string, UINode> Children
         {
             get
@@ -65,7 +73,7 @@ namespace Lab2.UI
             return children[name];
         }
 
-
+       
         public string Name
         {
             get => name;
@@ -147,7 +155,7 @@ namespace Lab2.UI
             }
             else
             {
-                throw new NodeNotAddedToRootException(new NodeNotAddedToRootExceptionArgs(this, uiRoot));
+                //throw new NodeNotAddedToRootException(new NodeNotAddedToRootExceptionArgs(this, uiRoot));
             }
             
         }
@@ -172,16 +180,18 @@ namespace Lab2.UI
             base.Draw();
             Console.WriteLine("   node~ draw {0}[{1}]", name,ID);
         }
-
+        [DataMember]
         bool isRoot;
+        public UINode():this(0, 0, 0, 0, "", "")
+        {
 
+        }
         public UINode(uint width, uint heigth, int left, int top, string css = null,string name = null) : base(width, heigth, left, top,css) { 
             this.name = name!=null?name: string.Format("{0}_{1}",this.GetType().Name, NextNameID);
             this.parent = null;
             isRoot = false;
             if (CanHaveChild())
             {
-                this.children = new Dictionary<string, UINode>();
                 Console.WriteLine("   node~ create dictionary '{0}'",this.name);
             }
             this.ID = NextID;

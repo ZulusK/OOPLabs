@@ -1,23 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Lab2.UI
 {
     [Serializable]
-
+    [DataContract]
     public abstract class Canvas
     {
-        
-        static string environment;
-        static CSSLoader stylyzer;
 
+        [DataMember]
+        static string environment;
+        [DataMember]
+        static CSSLoader stylyzer;
+        [DataMember]
         uint width;
+        [DataMember]
         uint height;
+        [DataMember]
         int left;
+        [DataMember]
         int top;
+        [DataMember]
         string css;
 
         static Canvas()
