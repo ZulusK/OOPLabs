@@ -194,12 +194,11 @@ namespace Lab3
 
         static void Main(string[] args)
         {
-            //testAnonimous();
-            //testLambdaAction();
-            //testFunc();
-            //testForm();
+            testAnonimous();
+            testLambdaAction();
+            testFunc();
+            testForm();
             testSerialize();
-            //testDesearialize();
             Console.ReadLine();
         }
     }

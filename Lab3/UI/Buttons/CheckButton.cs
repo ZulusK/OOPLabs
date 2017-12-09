@@ -7,7 +7,7 @@ using Lab2.UI.Activities;
 
 namespace Lab3.UI.Buttons
 {
-    public class CheckButton:Lab2.UI.Buttons.Button
+    public class CheckButton : Lab2.UI.Buttons.Button
     {
         public event Action<object, MouseEventArgs> OnClick;
 
@@ -16,21 +16,18 @@ namespace Lab3.UI.Buttons
             get;
             set;
         }
-
-
         public override void Click(object sender = null, MouseEventArgs args = null)
         {
             this.State = !this.State;
             base.Click(sender, args);
         }
-
         protected override void Draw()
         {
             base.Draw();
-            Console.WriteLine("     checkButton~ draw button: '{0}', state:{1}", name, State?"checked":"unchecked");
+            Console.WriteLine("     checkButton~ draw button: '{0}', state:{1}", name, State ? "checked" : "unchecked");
 
         }
-        public CheckButton(string text=null, string name=null):base(text,null,name)
+        public CheckButton(string text = null, string name = null) : base(text, null, name)
         {
             Console.WriteLine("     checkButton~ created '{0}'", this.name);
         }

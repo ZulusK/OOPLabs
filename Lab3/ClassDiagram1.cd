@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Lab3.UI.Buttons.CheckButton" Collapsed="true">
+    <Position X="8.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAACAAAAAAAAAAAABAAAAgA=</HashCode>
+      <FileName>UI\Buttons\CheckButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab3.UI.Form" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIgAAAAACAABhAACACAAAAAAAAAAAAEIAAAAAABAAA=</HashCode>
+      <FileName>UI\Form.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Lab3.UI.Input.TextInput" Collapsed="true">
+    <Position X="10.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAABAAgAAAAAAAAAA=</HashCode>
+      <FileName>UI\Input\TextInput.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab2.UI.Activities.MouseEventArgs" Collapsed="true">
+    <Position X="11.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Lab2.UI.Buttons.Button" Collapsed="true">
+    <Position X="6.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Lab2.UI.Buttons.PushButton" Collapsed="true">
+    <Position X="4.25" Y="4.75" Width="1.5" />
+    <InheritanceLine Type="Lab2.UI.Buttons.Button" FixedFromPoint="true">
+      <Path>
+        <Point X="7.25" Y="3.191" />
+        <Point X="7.25" Y="4.375" />
+        <Point X="5" Y="4.375" />
+        <Point X="5" Y="4.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Lab2.UI.Canvas" Collapsed="true">
+    <Position X="12.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Lab2.UI.CSSLoader" Collapsed="true">
+    <Position X="9.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Lab2.UI.Label" Collapsed="true">
+    <Position X="4.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Lab2.UI.UINode" Collapsed="true">
+    <Position X="8.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Lab2.UI.Exceptions.NodeNotAddedToRootExceptionArgs" Collapsed="true">
+    <Position X="11.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Lab2.UI.Exceptions.NodeNotAddedToRootException" Collapsed="true">
+    <Position X="9.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Lab2.UI.Layers.Layer&lt;T&gt;" Collapsed="true">
+    <Position X="2" Y="2.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Lab2.UI.Widgets.Widget" Collapsed="true">
+    <Position X="15.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Lab3.UI.Input.InputEventArgs" Collapsed="true">
+    <Position X="8.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAECAAAAAAAAAAAAAAAAAAACAABAAA=</HashCode>
+      <FileName>UI\Input\InputEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Lab2.UI.Activities.IClickable" Collapsed="true">
+    <Position X="9.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Lab2.UI.Activities.IReleasable" Collapsed="true">
+    <Position X="11.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Enum Name="Lab2.UI.Activities.MouseButton" Collapsed="true">
+    <Position X="9.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="Lab2.UI.Activities.KeyboardKey" Collapsed="true">
+    <Position X="11.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="Lab2.UI.Layers.Align" Collapsed="true">
+    <Position X="9.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Delegate Name="Lab2.UI.Activities.MouseEventHandler" Collapsed="true">
+    <Position X="9.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier />
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
