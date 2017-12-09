@@ -8,7 +8,7 @@ namespace Lab4.UI.Entities
 {
     [Serializable]
     [DataContract]
-    class Rectangle
+    public class Rectangle
     {
 
         public Rectangle(uint width, uint heigth)

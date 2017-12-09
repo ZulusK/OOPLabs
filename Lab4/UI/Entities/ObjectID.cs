@@ -8,7 +8,7 @@ namespace Lab4.UI.Entities
 {
     [Serializable]
     [DataContract]
-    class ObjectID
+   public  class ObjectID
     {
         [DataMember]
         uint currentID;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab4.UI.Entities
 {
-    class CSSLoader
+    public class CSSLoader
     {
         public void Apply(string css)
         {

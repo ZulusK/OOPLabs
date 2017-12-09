@@ -9,7 +9,7 @@ namespace Lab4.UI
 {
     [Serializable]
     [DataContract]
-    abstract class Canvas
+    public abstract class Canvas
     {
         public static string Environment
         {

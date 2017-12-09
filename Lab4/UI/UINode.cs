@@ -12,7 +12,7 @@ namespace Lab4.UI
 {
     [Serializable]
     [DataContract]
-    class UINode : Canvas, IComparable
+    public class UINode : Canvas, IComparable
     {
         [DataMember]
         protected static ObjectID ObjectIDGenerator { get; } = new ObjectID();
@@ -69,9 +69,9 @@ namespace Lab4.UI
         {
             Window = CreateRoot("MainWindow", new Rectangle(800, 600));
         }
-        protected static string NextUniqName
+        protected string NextUniqName
         {
-            get => String.Format("{0}{1}", new StackFrame().GetMethod().DeclaringType, ObjectIDGenerator.nextID);
+            get => String.Format("{0}{1}", this.GetType().Name, ObjectIDGenerator.nextID);
         }
 
         public virtual bool CanHaveChild()
@@ -80,11 +80,11 @@ namespace Lab4.UI
         }
         private UINode(string name, Rectangle frame, string css, bool isRoot) : base(frame, css)
         {
-            this.Name = name;
+            this.Name = name != null ? name : NextUniqName;
             this.IsRoot = isRoot;
             this.children = CanHaveChild() ? new Dictionary<uint, UINode>() : null;
             this.ID = ObjectIDGenerator.nextID;
-            Console.WriteLine("..UINode: created");
+            Console.WriteLine("..UINode[{0}]: created", Name);
         }
         public static UINode CreateRoot(string name, Rectangle frame, string css = null)
         {
@@ -99,7 +99,7 @@ namespace Lab4.UI
         {
 
         }
-        public UINode() : this(NextUniqName, new Rectangle(), null)
+        public UINode() : this(null, new Rectangle(), null)
         {
 
         }
