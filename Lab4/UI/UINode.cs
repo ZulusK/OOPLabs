@@ -7,13 +7,17 @@ using System.Runtime.Serialization;
 using Lab4.UI.Entities;
 using System.Diagnostics;
 using Lab4.UI.Exceptions;
+using System.Runtime.InteropServices;
+using Microsoft.Win32.SafeHandles;
 
 namespace Lab4.UI
 {
     [Serializable]
     [DataContract]
-    public class UINode : Canvas, IComparable
+    public class UINode : Canvas, IComparable, IDisposable
     {
+        bool disposed = false;
+
         [DataMember]
         protected static ObjectID ObjectIDGenerator { get; } = new ObjectID();
 
@@ -84,7 +88,7 @@ namespace Lab4.UI
             this.IsRoot = isRoot;
             this.children = CanHaveChild() ? new Dictionary<uint, UINode>() : null;
             this.ID = ObjectIDGenerator.nextID;
-            Console.WriteLine("..UINode[{0}]: created", Name);
+            //Console.WriteLine("..UINode[{0}]: created", Name);
         }
         public static UINode CreateRoot(string name, Rectangle frame, string css = null)
         {
@@ -228,6 +232,33 @@ namespace Lab4.UI
             if (obj == null) return 1;
             UINode nobj = obj as UINode;
             return this.ID.CompareTo(nobj.ID);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        public void Dispose(bool disposing)
+        {
+            Console.WriteLine("Dipose call for {0}, disposing: {1}", this,disposing);
+
+            if (disposed)
+            {
+                return;
+            }
+            if (disposing)
+            {
+                // Free any other managed objects here.
+            }
+            Clear();
+
+            disposed = true;
+
+        }
+        ~UINode()
+        {
+            Dispose(false);
         }
     }
 }
