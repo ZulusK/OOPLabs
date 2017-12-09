@@ -9,6 +9,7 @@ using System.Diagnostics;
 using Lab4.UI.Exceptions;
 using System.Runtime.InteropServices;
 using Microsoft.Win32.SafeHandles;
+using System.Collections.Generic;
 
 namespace Lab4.UI
 {
@@ -42,17 +43,17 @@ namespace Lab4.UI
             private set;
         }
         [DataMember]
-        UINode parent;
+        WeakReference parent;
         public UINode Parent
         {
-            get => parent;
+            get => parent != null && parent.Target != null ? parent.Target as UINode : null;
             protected set
             {
                 if (this.parent != null)
                 {
-                    parent.RemoveChildByID(this.ID);
+                    (parent.Target as UINode).RemoveChildByID(this.ID);
                 }
-                this.parent = value;
+                this.parent = new WeakReference(value);
             }
         }
         public bool IsRoot
@@ -136,7 +137,6 @@ namespace Lab4.UI
             child.Parent = this;
             this.children[child.ID] = child;
         }
-
         protected virtual bool RemoveChildByID(uint id)
         {
             if (!CanHaveChild()) return false;
@@ -215,7 +215,7 @@ namespace Lab4.UI
         {
             if (this.Parent != null)
             {
-                parent.Update();
+                Parent.Update();
             }
             else if (this.IsRoot)
             {
@@ -241,7 +241,7 @@ namespace Lab4.UI
         }
         public void Dispose(bool disposing)
         {
-            Console.WriteLine("Dipose call for {0}, disposing: {1}", this,disposing);
+            Console.WriteLine("Dipose call for {0}, disposing: {1}", this, disposing);
 
             if (disposed)
             {

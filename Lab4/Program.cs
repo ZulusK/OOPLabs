@@ -12,12 +12,12 @@ namespace Lab4
 
         static void Main(string[] args)
         {
-            //TestUINode.execute();
-            //TestLabel.execute();
-            //TestButtons.execute();
-            TestGarbageCollector.execute();
-            TestGarbageCollector.execute();
-            TestGarbageCollector.execute();
+            TestUINode.execute();
+            TestLabel.execute();
+            TestButtons.execute();
+            //TestGarbageCollector.execute();
+            //TestGarbageCollector.execute();
+            //TestGarbageCollector.execute();
             TestGarbageCollector.execute();
 
             Console.ReadKey();

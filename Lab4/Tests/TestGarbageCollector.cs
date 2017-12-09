@@ -14,7 +14,7 @@ namespace Lab4.Tests
     {
         static void fillRoot()
         {
-            
+
             //root.Update();
         }
         static void TestWithoutCallGC()
@@ -26,15 +26,12 @@ namespace Lab4.Tests
             var root = UINode.CreateRoot("New Root", new Rectangle(100, 100));
             for (int i = 0; i < 10; i++)
             {
-                root.AddChild(new PushButton("button" + i));
+                root.AddChild(new UINode("node" + i));
             }
-            root= UINode.CreateRoot("New Root 2", new Rectangle(100, 100));
+            root = UINode.CreateRoot("New Root 2", new Rectangle(100, 100));
             GC.Collect();
             GC.WaitForPendingFinalizers();
 
-        }
-        static void TestWithCallGC()
-        {
         }
         public static void execute()
         {
@@ -42,7 +39,6 @@ namespace Lab4.Tests
             Console.WriteLine(new StackFrame().GetMethod().DeclaringType);
             Console.WriteLine("#");
             TestWithoutCallGC();
-            TestWithCallGC();
         }
     }
 }

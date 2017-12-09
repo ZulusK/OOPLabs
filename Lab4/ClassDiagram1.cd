@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Lab4.UI.Buttons.Button" Collapsed="true">
+    <Position X="1.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAEAAAAAAACAAAAAAAAAAAQCAAAAgA=</HashCode>
+      <FileName>UI\Buttons\Button.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Lab4.UI.Buttons.CheckButton" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAgAEAAAAAAACAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>UI\Buttons\CheckButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab4.UI.Buttons.PushButton" Collapsed="true">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAEAAAAAABAAAAAAAAAAAAAABAAAgA=</HashCode>
+      <FileName>UI\Buttons\PushButton.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Lab4.UI.Canvas" Collapsed="true">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQAAAACAAAAAgAEAAAAAAAAAAAAAAAAABACAQAAEAE=</HashCode>
+      <FileName>UI\Canvas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab4.UI.Label" Collapsed="true">
+    <Position X="9.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAEAAAAAAAAAAAAAAAAAAAQCAAAAAA=</HashCode>
+      <FileName>UI\Label.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab4.UI.UINode" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ECYAAAAAACAAkgREGAAEQAQAAAIAAAAAATCQKAJQAAA=</HashCode>
+      <FileName>UI\UINode.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Lab4.UI.Containers.Form" Collapsed="true">
+    <Position X="5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAACAABhAEAACAAAEAAAAAAAAEIAAAAAAAAAA=</HashCode>
+      <FileName>UI\Containers\Form.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Lab4.UI.Containers.Layer&lt;T&gt;" Collapsed="true">
+    <Position X="7.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAEgAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>UI\Containers\Layer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab4.UI.Entities.Activities.InputEventArgs" Collapsed="true">
+    <Position X="6.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAQAAAAAAAAAAAAAACAAACAA=</HashCode>
+      <FileName>UI\Entities\Activities\InputEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab4.UI.Entities.Activities.MouseEventArgs" Collapsed="true">
+    <Position X="8.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAEAAAQAAAAAAAAAAAAAAAAAAaAA=</HashCode>
+      <FileName>UI\Entities\Activities\MouseEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab4.UI.Entities.CSSLoader" Collapsed="true">
+    <Position X="5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\Entities\CSSLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab4.UI.Entities.ObjectID" Collapsed="true">
+    <Position X="3.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\Entities\ObjectID.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab4.UI.Entities.Rectangle" Collapsed="true">
+    <Position X="5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAEAAAAAEAAAAAIAAAACAAAAAAAAAA=</HashCode>
+      <FileName>UI\Entities\Rectangle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab4.UI.Exceptions.ChildIsRootException" Collapsed="true">
+    <Position X="3.25" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAEAAAAAAAAAAAAAAAAAAAAIAAIAAA=</HashCode>
+      <FileName>UI\Exceptions\ChildIsRootException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab4.UI.Inputs.TextInput" Collapsed="true">
+    <Position X="9.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAkAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>UI\Inputs\TextInput.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab4.Tests.TestButtons" Collapsed="true">
+    <Position X="6.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAEAAAQIAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Tests\TestButtons.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab4.Tests.TestGarbageCollector" Collapsed="true">
+    <Position X="8.5" Y="7" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAEAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Tests\TestGarbageCollector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab4.Tests.TestLabel" Collapsed="true">
+    <Position X="3.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Tests\TestLabel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab4.Tests.TestUINode" Collapsed="true">
+    <Position X="5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAGAAEAAAAAAAAAAAAQkAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Tests\TestUINode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Lab4.UI.Entities.Activities.IClickable" Collapsed="true">
+    <Position X="3.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>UI\Entities\Activities\IClickable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Lab4.UI.Entities.Activities.IReleasable" Collapsed="true">
+    <Position X="5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>UI\Entities\Activities\IReleasable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Lab4.UI.Containers.Align" Collapsed="true">
+    <Position X="3.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAQAAAAAAAAAAAAAAAAAAAAIAIAA=</HashCode>
+      <FileName>UI\Containers\Layer.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Lab4.UI.Entities.Activities.MouseButton" Collapsed="true">
+    <Position X="6.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAQAAAAAAAAAAABAgAAAAAAAAAAA=</HashCode>
+      <FileName>UI\Entities\Activities\Constants.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Lab4.UI.Entities.Activities.KeyboardKey" Collapsed="true">
+    <Position X="5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAQAAAAQAAAAACAAAAoAAAAACAAAAAAQA=</HashCode>
+      <FileName>UI\Entities\Activities\Constants.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="Lab4.UI.Entities.Activities.MouseEventHandler" Collapsed="true">
+    <Position X="3.25" Y="11.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>UI\Entities\Activities\Constants.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
