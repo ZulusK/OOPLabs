@@ -172,7 +172,7 @@ namespace Lab4.UI
             return children[id] != null;
         }
 
-        public bool AddChild(UINode child)
+        public virtual bool AddChild(UINode child)
         {
             if (!CanHaveChild()) return false;
             if (child == null) throw new NullReferenceException("'child' must be an object");
@@ -187,7 +187,7 @@ namespace Lab4.UI
                 return false;
             }
         }
-        public void Clear()
+        public virtual void Clear()
         {
             if (!CanHaveChild()) return;
             this.children.ToList()
@@ -223,7 +223,7 @@ namespace Lab4.UI
         {
             return String.Format("NodeUI: ('{0}':{1})", Name, ID);
         }
-        public int CompareTo(object obj)
+        public virtual int CompareTo(object obj)
         {
             if (obj == null) return 1;
             UINode nobj = obj as UINode;

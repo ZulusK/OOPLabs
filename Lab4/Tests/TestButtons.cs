@@ -46,7 +46,17 @@ namespace Lab4.Tests
         }
         static void TestRelease()
         {
+            Console.WriteLine("-");
+            Console.WriteLine(new StackFrame().GetMethod().Name);
+            Console.WriteLine("-");
 
+            var button = new PushButton("click me");
+            button.OnRelease += (sender, args) =>
+            {
+                Console.WriteLine("Lambda: {0}=>{1}", sender, args);
+            };
+            button.OnRelease += Foo;
+            button.Release(new MouseEventArgs(1, 2, MouseButton.MIDDLE, KeyboardKey.LALT | KeyboardKey.LSHIFT));
         }
         public static void execute()
         {

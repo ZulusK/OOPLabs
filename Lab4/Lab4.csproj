@@ -49,16 +49,21 @@
     <Compile Include="Tests\TestLabel.cs" />
     <Compile Include="Tests\TestUINode.cs" />
     <Compile Include="UI\Buttons\Button.cs" />
+    <Compile Include="UI\Buttons\CheckButton.cs" />
     <Compile Include="UI\Buttons\PushButton.cs" />
     <Compile Include="UI\Canvas.cs" />
+    <Compile Include="UI\Containers\Form.cs" />
+    <Compile Include="UI\Containers\Layer.cs" />
     <Compile Include="UI\Entities\Activities\Constants.cs" />
     <Compile Include="UI\Entities\Activities\IClickable.cs" />
+    <Compile Include="UI\Entities\Activities\InputEventArgs.cs" />
     <Compile Include="UI\Entities\Activities\IReleasable.cs" />
     <Compile Include="UI\Entities\Activities\MouseEventArgs.cs" />
     <Compile Include="UI\Entities\CSSLoader.cs" />
     <Compile Include="UI\Entities\ObjectID.cs" />
     <Compile Include="UI\Entities\Rectangle.cs" />
     <Compile Include="UI\Exceptions\ChildIsRootException.cs" />
+    <Compile Include="UI\Inputs\TextInput.cs" />
     <Compile Include="UI\Label.cs" />
     <Compile Include="UI\UINode.cs" />
   </ItemGroup>
