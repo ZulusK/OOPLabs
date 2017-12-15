@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab5.UI.Entities
 {
+    [Serializable]
     public class CSSLoader
     {
         public void Apply(string css)

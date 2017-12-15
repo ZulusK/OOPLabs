@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Lab5.UI.Buttons
 {
+    [Serializable]
     public class CheckButton: Button
     {
         public event Action<object, MouseEventArgs> OnClick;

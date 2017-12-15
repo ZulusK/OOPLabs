@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Lab5.UI.Buttons
 {
+    [Serializable]
     public abstract class Button : UINode, IClickable
     {
         public event MouseEventHandler OnClick;

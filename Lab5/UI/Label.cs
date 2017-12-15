@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace Lab5.UI
 {
-   public class Label : UINode
+    [Serializable]
+    public class Label : UINode
     {
         public override bool CanHaveChild()
         {

@@ -13,30 +13,33 @@ namespace Lab5.ViewModels
     [Serializable]
     public class UINodeModel : ViewModelBase
     {
-        UINode node;
+        public UINode Node {
+            get;
+            private set;
+        }
         public uint ID
         {
-            get => node.ID;
+            get => Node.ID;
         }
         public string Name
         {
-            get => node.Name;
+            get => Node.Name;
             set
             {
-                node.Name = value;
+                Node.Name = value;
                 OnPropertyChanged("Name");
             }
         }
         public string Type
         {
-            get => node.GetType().Name;
+            get => Node.GetType().Name;
         }
         public string CSS
         {
-            get => node.CSS;
+            get => Node.CSS;
             set
             {
-                node.CSS = value;
+                Node.CSS = value;
                 OnPropertyChanged("CSS");
             }
         }
@@ -44,7 +47,7 @@ namespace Lab5.ViewModels
 
         public UINodeModel(UINode node)
         {
-            this.node = node;
+            this.Node = node;
         }
     }
     [Serializable]

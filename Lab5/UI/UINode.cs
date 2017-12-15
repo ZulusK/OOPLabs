@@ -194,8 +194,8 @@ namespace Lab5.UI
         public virtual void Clear()
         {
             if (!CanHaveChild()) return;
-            this.children.ToList()
-                .ForEach(pair => this.RemoveChildByID(pair.Value.ID));
+            //this.children.ToList()
+            //    .ForEach(pair => this.RemoveChildByID(pair.Value.ID));
         }
         protected sealed override void Render()
         {

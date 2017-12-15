@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Lab5.UI.Inputs
 {
+    [Serializable]
     public class TextInput : Label
     {
         public event Action<object, InputEventArgs> OnInput;

@@ -1,4 +1,5 @@
-﻿using Lab5.ViewModels;
+﻿using Lab5.UI;
+using Lab5.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,16 +13,15 @@ namespace Lab5.Services
 {
     class NodeService
     {
-        public static List<UINodeModel> Load(string path)
+        public static List<UINode> Load(string path)
         {
             BinaryFormatter formatter = new BinaryFormatter();
             using (FileStream fs = new FileStream(path, FileMode.Open))
             {
-                return (List<UINodeModel>)formatter.Deserialize(fs);
-                Console.WriteLine("Deserialized");
+                return (List<UINode>)formatter.Deserialize(fs);
             }
         }
-        public static bool Save(string path, List<UINodeModel> item)
+        public static bool Save(string path, List<UINode> item)
         {
             BinaryFormatter serializer = new BinaryFormatter();
 

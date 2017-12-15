@@ -229,7 +229,7 @@ namespace Lab5.ViewModels
                     Nodes.Clear();
                     foreach (var node in loadedNodes)
                     {
-                        Nodes.Add(node);
+                        Nodes.Add(new UINodeModel(node));
                     }
                     dialogs.ShowMessage("Файл загружен");
                 }
@@ -246,7 +246,7 @@ namespace Lab5.ViewModels
             {
                 if (dialogs.SaveFileDialog("data.bin") == true)
                 {
-                    NodeService.Save(dialogs.FilePath, Nodes.ToList());
+                    NodeService.Save(dialogs.FilePath,Nodes.Select(x=>x.Node).ToList());
                     dialogs.ShowMessage("Файл сохранен");
                 }
             }
