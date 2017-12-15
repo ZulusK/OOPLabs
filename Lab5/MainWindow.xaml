@@ -16,12 +16,12 @@
             <MenuItem Header="File">
                 <MenuItem Header="Save"  Command="{Binding SaveCommand}"/>
                 <MenuItem Header="Load" Command="{Binding LoadCommand}"/>
-                <Separator d:IsHidden="True" />
+                <Separator  />
                 <MenuItem  Header="Exit" Command="{Binding ExitCommand}"/>
             </MenuItem>
             <MenuItem Header="Edit" >
                 <MenuItem Header="Add" Command="{Binding ShowAddDialogCommand}"/>
-                <MenuItem Header="Clear" Command="{Binding ClearCommnad}"/>
+                <MenuItem Header="Clear" Command="{Binding ClearCommand}"/>
             </MenuItem>
         </Menu>
         <Grid DockPanel.Dock="Bottom">
@@ -38,6 +38,10 @@
                         <ContextMenu>
                             <MenuItem Header="Clear"
                 Command="{Binding ClearCommand}"/>
+                            <MenuItem Header="Add" Command="{Binding ShowAddDialogCommand}"/>
+                            <MenuItem Header="Save"  Command="{Binding SaveCommand}"/>
+                            <MenuItem Header="Load" Command="{Binding LoadCommand}"/>
+                            
                         </ContextMenu>
                     </ListView.ContextMenu>
                     <ListView.View>
