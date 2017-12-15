@@ -1,4 +1,5 @@
 ﻿using Lab5.UI;
+using Lab5.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +18,11 @@ namespace Lab5
 {
     public partial class UINodeCreationWindow : Window
     {
-        public UINodeCreationWindow()
+        public UINodeCreationWindow(ICommand callbackAddNode)
         {
             InitializeComponent();
-        }
+            DataContext = new NodeCreationModel(callbackAddNode);
 
-        
+        }
     }
 }

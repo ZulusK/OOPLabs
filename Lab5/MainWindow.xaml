@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab5"
         mc:Ignorable="d"
-        Title="MainWindow" Height="522.549" Width="827.941">
+        Title="Lab5" Height="522.549" Width="827.941">
     <DockPanel>
         <Menu  DockPanel.Dock="Top">
             <MenuItem Header="File">
@@ -15,7 +15,7 @@
                 <MenuItem  Header="Exit" Command="{Binding ExitCommand}"/>
             </MenuItem>
             <MenuItem Header="Edit" >
-                <MenuItem Header="Add" InputGestureText="Ctrl-+" Command="{Binding ShowAddDialogCommand}"/>
+                <MenuItem Header="Add" Command="{Binding ShowAddDialogCommand}"/>
             </MenuItem>
         </Menu>
         <Grid DockPanel.Dock="Bottom">
@@ -26,12 +26,19 @@
             </Grid.ColumnDefinitions>
             <DockPanel Grid.Column="0">
                 <TextBlock DockPanel.Dock="Top" Text="UINodes" TextAlignment="Center"/>
-                <ListView DockPanel.Dock="Bottom" BorderBrush="AliceBlue" ItemsSource="{Binding Path=Nodes}" HorizontalAlignment="Stretch">
+                <ListView DockPanel.Dock="Bottom" BorderBrush="AliceBlue" ItemsSource="{Binding Path=Nodes}" HorizontalAlignment="Stretch" x:Name="list"
+                          SelectedItem="{Binding Selected}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}"/>
                             <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Path=Type}"/>
-
+                            <GridViewColumn Width="Auto" Header="Action" HeaderStringFormat="Screen">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Command="{Binding ElementName=list, Path=DataContext.RemoveCommand}" CommandParameter="{Binding Path=ID}" Content="Delete" Width="auto" Background="Red" HorizontalAlignment="Right" Margin="10,10"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -39,11 +46,13 @@
             <GridSplitter Grid.Column="1" ShowsPreview="False" Width="3"
         HorizontalAlignment="Center" VerticalAlignment="Stretch" />
             <StackPanel Grid.Column="2" DataContext="{Binding Selected}">
-                <TextBlock Text="Выбранный элемент"  />
-                <TextBlock Text="Name" />
-                <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBlock Text="Type" />
-                <TextBox Text="{Binding Type, UpdateSourceTrigger=PropertyChanged}" />
+                <Label Content="Selected item" HorizontalAlignment="Center"/>
+                <Label Content="Name" HorizontalAlignment="Right"/>
+                <Label Content="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Height="30" VerticalAlignment="Center"/>
+                <Label Content="Type" HorizontalAlignment="Right"/>
+                <Label Content="{Binding Type, UpdateSourceTrigger=PropertyChanged}" Height="30" VerticalAlignment="Center"/>
+                <Label Content="CSS" HorizontalAlignment="Right"/>
+                <Label Content="{Binding CSS, UpdateSourceTrigger=PropertyChanged}" Height="30" VerticalAlignment="Center"/>
             </StackPanel>
         </Grid>
     </DockPanel>

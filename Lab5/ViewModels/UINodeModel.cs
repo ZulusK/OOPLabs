@@ -11,6 +11,10 @@ namespace Lab5.ViewModels
     public class UINodeModel
     {
         UINode node;
+        public uint ID
+        {
+            get => node.ID;
+        }
         public string Name
         {
             get => node.Name;
@@ -19,6 +23,10 @@ namespace Lab5.ViewModels
         public string Type
         {
             get => node.GetType().Name;
+        }
+        public string CSS
+        {
+            get => node.CSS;
         }
         public UINodeModel(UINode node)
         {

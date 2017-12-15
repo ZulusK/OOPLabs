@@ -16,6 +16,5 @@ namespace Lab5
     public partial class App : Application
     {
         MainWindow view = new Lab5.MainWindow();
-        //view.show();
     }
 }

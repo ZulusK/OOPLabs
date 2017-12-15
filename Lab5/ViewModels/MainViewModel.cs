@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Lab5.UI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -82,7 +84,18 @@ namespace Lab5.ViewModels
         #endregion
         private DelegateCommand _ExitCommand;
         private DelegateCommand _ShowAddDialogCommand;
-
+        private DelegateCommand _RemoveCommand;
+        private DelegateCommand _AddNodeCommand;
+        UINodeModel _selected;
+        public UINodeModel Selected
+        {
+            get { return _selected; }
+            set
+            {
+                _selected = value;
+                OnPropertyChanged("Selected");
+            }
+        }
         public ICommand ExitCommand
         {
             get
@@ -116,7 +129,7 @@ namespace Lab5.ViewModels
         }
         private void ShowAddDialog(object sender)
         {
-            var subWindow = new UINodeCreationWindow();
+            var subWindow = new UINodeCreationWindow(AddNode);
             subWindow.Show();
         }
         public bool CanExecuteShowAddDialogCommand(object args)
@@ -137,13 +150,44 @@ namespace Lab5.ViewModels
                 return _AddNode;
             }
         }
-        public void ExecuteAddNode(object args)
+        public void ExecuteAddNode(object node)
         {
-            Console.WriteLine("Call add node");
+            if (node != null)
+            {
+                this.Nodes.Add(new UINodeModel(node as UINode));
+            }
         }
         public bool CanExecuteAddNode(object args)
         {
             return true;
         }
+        public ICommand RemoveCommand
+        {
+            get
+            {
+                if (_RemoveCommand == null)
+                {
+                    _RemoveCommand = new DelegateCommand(Remove, CanExecuteRemoveCommand);
+                }
+                return _RemoveCommand;
+            }
+        }
+        private void Remove(Object args)
+        {
+
+            if (args == null) return;
+            UInt32 id = (UInt32)args;
+            var index = this
+                .Nodes
+                .Select((v, i) => new { v, i })
+                .First((obj) => { return (obj.v.ID.Equals(id)); }).i;
+            if (index >= 0)
+                this.Nodes.RemoveAt(index);
+        }
+        public bool CanExecuteRemoveCommand(object args)
+        {
+            return true;
+        }
+
     }
 }
