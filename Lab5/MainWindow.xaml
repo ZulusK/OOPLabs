@@ -76,7 +76,7 @@
                 <Label Content="CSS" HorizontalAlignment="Right"/>
                 <Label Content="{Binding CSS, UpdateSourceTrigger=PropertyChanged}" Height="30" VerticalAlignment="Center"
                        Background="{Binding Path=CSS, Converter={StaticResource css2Color}}"/>
-                <Button Content="Edit" Command="{Binding ShowEditWindowCommand}" Width="100" HorizontalAlignment="Center"
+                <Button Content="Edit" Command="{Binding ElementName=list, Path=DataContext.ShowEditWindowCommand}" Width="100" HorizontalAlignment="Center"
                         IsEnabled="{Binding ElementName=list, Path=DataContext.Selected, Converter={StaticResource obj2Bool}}">
 
                 </Button>

@@ -1,4 +1,4 @@
-﻿<Window x:Class="Lab5.UINodeCreationWindow"
+﻿<Window x:Class="Lab5.EditWindow"
         x:Name="CreationWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -51,7 +51,7 @@
         <TextBox TextWrapping="Wrap" Grid.Column="1" 
                  Grid.Row="2" AcceptsReturn="True"
                  Margin="10,10"
-                 Text="{Binding Path=NodeCSS, Mode=OneWayToSource}"/>
+                 Text="{Binding Path=NodeCSS}"/>
         <Grid  VerticalAlignment="Bottom" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>

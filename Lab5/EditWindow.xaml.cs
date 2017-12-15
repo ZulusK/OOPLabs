@@ -10,7 +10,6 @@ namespace Lab5
         {
             InitializeComponent();
             DataContext = new NodeEditModel(callback, node);
-
         }
     }
 }

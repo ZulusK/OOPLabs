@@ -34,6 +34,17 @@ namespace Lab5.ViewModels
         public string NodeName { get; set; }
         public string NodeCSS { get; set; }
         private UINodeModel Node;
+        public ICommand SubmitCommand
+        {
+            get
+            {
+                if (_SubmitCommand == null)
+                {
+                    _SubmitCommand = new DelegateCommand(Submit, a=>true);
+                }
+                return _SubmitCommand;
+            }
+        }
         public ICommand CancelCommand
         {
             get
@@ -62,7 +73,7 @@ namespace Lab5.ViewModels
             Node.Name = this.NodeName;
             if (_CallBack != null)
             {
-                _CallBack.Execute((Node));
+                _CallBack.Execute(Node);
             }
             if (window != null)
             {
@@ -73,6 +84,8 @@ namespace Lab5.ViewModels
         public NodeEditModel(ICommand editNodeCallback, UINodeModel node)
         {
             this.Node = node;
+            this.NodeCSS = node.CSS;
+            this.NodeName = node.Name;
             this._CallBack = editNodeCallback;
         }
     }

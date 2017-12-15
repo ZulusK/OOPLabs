@@ -207,7 +207,7 @@ namespace Lab5.ViewModels
             {
                 if (_ShowEditWindowCommand == null)
                 {
-                    _ShowEditWindowCommand = new DelegateCommand(ExecuteShowEditDialog, (args) => true);
+                    _ShowEditWindowCommand = new DelegateCommand(ExecuteShowEditDialog, args => true);
                 }
                 return _ShowEditWindowCommand;
             }
