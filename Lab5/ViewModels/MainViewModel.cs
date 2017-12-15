@@ -91,8 +91,11 @@ namespace Lab5.ViewModels
         private DelegateCommand _LoadCommand;
         private DelegateCommand _ShowAddDialogCommand;
         private DelegateCommand _RemoveCommand;
+        private DelegateCommand _ShowEditWindowCommand;
         private DelegateCommand _ClearCommand;
         private DelegateCommand _AddNodeCommand;
+        private DelegateCommand _EditNodeCommand;
+
         UINodeModel _selected;
         public UINodeModel Selected
         {
@@ -140,6 +143,20 @@ namespace Lab5.ViewModels
                 return _AddNodeCommand;
             }
         }
+        public ICommand EditNodeCommand
+        {
+            get
+            {
+                if (_EditNodeCommand == null)
+                {
+                    _EditNodeCommand = new DelegateCommand(ExecuteEditNode, (args) => true);
+
+                }
+
+                return _EditNodeCommand;
+            }
+        }
+
         public ICommand RemoveCommand
         {
             get
@@ -183,6 +200,18 @@ namespace Lab5.ViewModels
                 }
                 return _ClearCommand;
             }
+        }
+        public ICommand ShowEditWindowCommand
+        {
+            get
+            {
+                if (_ShowEditWindowCommand == null)
+                {
+                    _ShowEditWindowCommand = new DelegateCommand(ExecuteShowEditDialog, (args) => true);
+                }
+                return _ShowEditWindowCommand;
+            }
+
         }
         private void ExecuteClearCommand(object args)
         {
@@ -243,6 +272,12 @@ namespace Lab5.ViewModels
             var subWindow = new UINodeCreationWindow(AddNodeCommand);
             subWindow.Show();
         }
+        private void ExecuteShowEditDialog(object sender)
+        {
+            var subWindow = new EditWindow(EditNodeCommand, Selected);
+            subWindow.Show();
+        }
+
         private void ExecuteRemove(Object args)
         {
             // check, is user is sure
@@ -257,6 +292,10 @@ namespace Lab5.ViewModels
                 .First((obj) => { return (obj.v.ID.Equals(id)); }).i;
             if (index >= 0)
                 this.Nodes.RemoveAt(index);
+        }
+        public void ExecuteEditNode(object node)
+        {
+
         }
 
     }
