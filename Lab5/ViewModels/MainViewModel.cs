@@ -1,4 +1,6 @@
-﻿using Lab5.UI;
+﻿using Lab5.Dialogs;
+using Lab5.Services;
+using Lab5.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -82,7 +84,10 @@ namespace Lab5.ViewModels
         }
 
         #endregion
+        private DialogService dialogs=new DialogService();
         private DelegateCommand _ExitCommand;
+        private DelegateCommand _SaveCommand;
+        private DelegateCommand _LoadCommand;
         private DelegateCommand _ShowAddDialogCommand;
         private DelegateCommand _RemoveCommand;
         private DelegateCommand _AddNodeCommand;
@@ -96,59 +101,117 @@ namespace Lab5.ViewModels
                 OnPropertyChanged("Selected");
             }
         }
-        public ICommand ExitCommand
-        {
-            get
-            {
-                if (_ExitCommand == null)
-                {
-                    _ExitCommand = new DelegateCommand(Exit, CanExecuteExitCommand);
-                }
-                return _ExitCommand;
-            }
-        }
-        private void Exit(object sender)
-        {
-            Console.WriteLine("exit");
-            Application.Current.Shutdown();
-        }
-        public bool CanExecuteExitCommand(object args)
-        {
-            return true;
-        }
+
+
         public ICommand ShowAddDialogCommand
         {
             get
             {
                 if (_ShowAddDialogCommand == null)
                 {
-                    _ShowAddDialogCommand = new DelegateCommand(ShowAddDialog, CanExecuteShowAddDialogCommand);
+                    _ShowAddDialogCommand = new DelegateCommand(ExecuteShowAddDialog, (args)=>true);
                 }
                 return _ShowAddDialogCommand;
             }
         }
-        private void ShowAddDialog(object sender)
-        {
-            var subWindow = new UINodeCreationWindow(AddNode);
-            subWindow.Show();
-        }
-        public bool CanExecuteShowAddDialogCommand(object args)
-        {
-            return true;
-        }
-        private ICommand _AddNode;
-        public ICommand AddNode
+        public ICommand ExitCommand
         {
             get
             {
-                if (_AddNode == null)
+                if (_ExitCommand == null)
                 {
-                    _AddNode = new DelegateCommand(ExecuteAddNode, CanExecuteAddNode);
+                    _ExitCommand = new DelegateCommand(ExecuteExit, (args)=>true);
+                }
+                return _ExitCommand;
+            }
+        }
+        public ICommand AddNodeCommand
+        {
+            get
+            {
+                if (_AddNodeCommand == null)
+                {
+                    _AddNodeCommand = new DelegateCommand(ExecuteAddNode, (args) =>true);
 
                 }
 
-                return _AddNode;
+                return _AddNodeCommand;
             }
+        }
+        public ICommand RemoveCommand
+        {
+            get
+            {
+                if (_RemoveCommand == null)
+                {
+                    _RemoveCommand = new DelegateCommand(ExecuteRemove, (args)=>true);
+                }
+                return _RemoveCommand;
+            }
+        }
+        public ICommand SaveCommand
+        {
+            get
+            {
+                if (_SaveCommand == null)
+                {
+                    _SaveCommand = new DelegateCommand(ExecuteSaveCommand, (args) => true);
+                }
+                return _SaveCommand;
+            }
+        }
+        public ICommand LoadCommand
+        {
+            get
+            {
+                if (_LoadCommand == null)
+                {
+                    _LoadCommand = new DelegateCommand(ExecuteLoadCommand, (args) => true);
+                }
+                return _LoadCommand;
+            }
+        }
+
+        private void ExecuteLoadCommand(object args)
+        {
+            try
+            {
+                if (dialogs.OpenFileDialog() == true)
+                {
+                    var loadedNodes = NodeService.Load(dialogs.FilePath);
+                    Nodes.Clear();
+                    foreach (var node in loadedNodes)
+                    {
+                        Nodes.Add(node);
+                    }
+                    dialogs.ShowMessage("Файл загружен");
+                }
+            }
+            catch (Exception ex)
+            {
+                dialogs.ShowMessage(ex.Message);
+            }
+        }
+
+        private void ExecuteSaveCommand(object args)
+        {
+            try
+            {
+                if (dialogs.SaveFileDialog("data.bin") == true)
+                {
+                    NodeService.Save(dialogs.FilePath, Nodes.ToList());
+                    dialogs.ShowMessage("Файл сохранен");
+                }
+            }
+            catch (Exception ex)
+            {
+                dialogs.ShowMessage(ex.Message);
+            }
+        }
+        private void ExecuteExit(object sender)
+        {
+            Console.WriteLine("exit");
+            Application.Current.Shutdown();
         }
         public void ExecuteAddNode(object node)
         {
@@ -157,22 +220,12 @@ namespace Lab5.ViewModels
                 this.Nodes.Add(new UINodeModel(node as UINode));
             }
         }
-        public bool CanExecuteAddNode(object args)
+        private void ExecuteShowAddDialog(object sender)
         {
-            return true;
+            var subWindow = new UINodeCreationWindow(AddNodeCommand);
+            subWindow.Show();
         }
-        public ICommand RemoveCommand
-        {
-            get
-            {
-                if (_RemoveCommand == null)
-                {
-                    _RemoveCommand = new DelegateCommand(Remove, CanExecuteRemoveCommand);
-                }
-                return _RemoveCommand;
-            }
-        }
-        private void Remove(Object args)
+        private void ExecuteRemove(Object args)
         {
 
             if (args == null) return;
@@ -183,10 +236,6 @@ namespace Lab5.ViewModels
                 .First((obj) => { return (obj.v.ID.Equals(id)); }).i;
             if (index >= 0)
                 this.Nodes.RemoveAt(index);
-        }
-        public bool CanExecuteRemoveCommand(object args)
-        {
-            return true;
         }
 
     }

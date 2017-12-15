@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Dialogs\DialogService.cs" />
+    <Compile Include="Services\NodeService.cs" />
     <Compile Include="UINodeCreationWindow.xaml.cs">
       <DependentUpon>UINodeCreationWindow.xaml</DependentUpon>
     </Compile>

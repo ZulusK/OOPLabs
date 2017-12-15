@@ -11,7 +11,7 @@
             <MenuItem Header="File">
                 <MenuItem Header="Save"  Command="{Binding SaveCommand}"/>
                 <MenuItem Header="Load" Command="{Binding LoadCommand}"/>
-                <Separator />
+                <Separator d:IsHidden="True" />
                 <MenuItem  Header="Exit" Command="{Binding ExitCommand}"/>
             </MenuItem>
             <MenuItem Header="Edit" >

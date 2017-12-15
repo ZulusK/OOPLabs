@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Lab5.ViewModels
 {
+    [Serializable]
     public class UINodeModel
     {
         UINode node;
@@ -33,6 +34,7 @@ namespace Lab5.ViewModels
             this.node = node;
         }
     }
+    [Serializable]
     public class UINodeCollectionModel : ObservableCollection<UINodeModel>
     {
         private static object _threadLock = new Object();
