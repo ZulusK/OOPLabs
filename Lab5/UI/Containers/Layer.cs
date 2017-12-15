@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab4.UI.Containers
+namespace Lab5.UI.Containers
 {
     public enum Align { VERTICAL, CENTER, HORIZONTAL, NONE };
 

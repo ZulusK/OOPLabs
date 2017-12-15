@@ -1,0 +1,23 @@
+﻿<Window x:Class="Lab5.UINodeCreationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab5"
+        mc:Ignorable="d"
+        Title="Create new node" Height="300" Width="300">
+    <Grid>
+        <Label Content="Name"/>
+        <TextBox TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="101,4,71,0"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="168,123,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Type of Node"/>
+        <ComboBox Margin="72,192,29,52">
+            <TextBlock>LG Nexus 5X</TextBlock>
+            <TextBlock>Huawai Nexus 6P</TextBlock>
+            <TextBlock>iPhone 6S</TextBlock>
+            <TextBlock>iPhone 6S Plus</TextBlock>
+            <TextBlock>Microsoft Lumia 950</TextBlock>
+        </ComboBox>
+    </Grid>
+</Window>
