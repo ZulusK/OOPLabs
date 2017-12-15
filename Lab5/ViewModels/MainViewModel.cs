@@ -81,15 +81,17 @@ namespace Lab5.ViewModels
         public MainViewModel()
         {
             Nodes = UINodeCollectionModel.Current;
+            this.LoadCommand.Execute(null);
         }
 
         #endregion
-        private DialogService dialogs=new DialogService();
+        private DialogService dialogs = new DialogService();
         private DelegateCommand _ExitCommand;
         private DelegateCommand _SaveCommand;
         private DelegateCommand _LoadCommand;
         private DelegateCommand _ShowAddDialogCommand;
         private DelegateCommand _RemoveCommand;
+        private DelegateCommand _ClearCommand;
         private DelegateCommand _AddNodeCommand;
         UINodeModel _selected;
         public UINodeModel Selected
@@ -109,7 +111,7 @@ namespace Lab5.ViewModels
             {
                 if (_ShowAddDialogCommand == null)
                 {
-                    _ShowAddDialogCommand = new DelegateCommand(ExecuteShowAddDialog, (args)=>true);
+                    _ShowAddDialogCommand = new DelegateCommand(ExecuteShowAddDialog, (args) => true);
                 }
                 return _ShowAddDialogCommand;
             }
@@ -120,7 +122,7 @@ namespace Lab5.ViewModels
             {
                 if (_ExitCommand == null)
                 {
-                    _ExitCommand = new DelegateCommand(ExecuteExit, (args)=>true);
+                    _ExitCommand = new DelegateCommand(ExecuteExit, (args) => true);
                 }
                 return _ExitCommand;
             }
@@ -131,7 +133,7 @@ namespace Lab5.ViewModels
             {
                 if (_AddNodeCommand == null)
                 {
-                    _AddNodeCommand = new DelegateCommand(ExecuteAddNode, (args) =>true);
+                    _AddNodeCommand = new DelegateCommand(ExecuteAddNode, (args) => true);
 
                 }
 
@@ -144,7 +146,7 @@ namespace Lab5.ViewModels
             {
                 if (_RemoveCommand == null)
                 {
-                    _RemoveCommand = new DelegateCommand(ExecuteRemove, (args)=>true);
+                    _RemoveCommand = new DelegateCommand(ExecuteRemove, (args) => true);
                 }
                 return _RemoveCommand;
             }
@@ -171,7 +173,23 @@ namespace Lab5.ViewModels
                 return _LoadCommand;
             }
         }
-
+        public ICommand ClearCommand
+        {
+            get
+            {
+                if (_ClearCommand == null)
+                {
+                    _ClearCommand = new DelegateCommand(ExecuteClearCommand, (args) => true);
+                }
+                return _ClearCommand;
+            }
+        }
+        private void ExecuteClearCommand(object args)
+        {
+            // check, is user is sure
+            if (MessageBox.Show("Are you sure?", "Alert, clear!", MessageBoxButton.YesNo) != MessageBoxResult.Yes) return;
+            this.Nodes.Clear();
+        }
         private void ExecuteLoadCommand(object args)
         {
             try
@@ -227,7 +245,10 @@ namespace Lab5.ViewModels
         }
         private void ExecuteRemove(Object args)
         {
-
+            // check, is user is sure
+            
+            
+            if (MessageBox.Show("Are you sure?", "Alert, remove!", MessageBoxButton.YesNo) != MessageBoxResult.Yes) return;
             if (args == null) return;
             UInt32 id = (UInt32)args;
             var index = this

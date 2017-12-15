@@ -53,7 +53,6 @@ namespace Lab5.ViewModels
         }
         private UINodeCollectionModel()
         {
-            this.Add(new UINodeModel(new UINode(null, new UI.Entities.Rectangle(), null)));
         }
     }
 }

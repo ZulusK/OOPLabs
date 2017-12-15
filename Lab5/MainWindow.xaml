@@ -16,6 +16,7 @@
             </MenuItem>
             <MenuItem Header="Edit" >
                 <MenuItem Header="Add" Command="{Binding ShowAddDialogCommand}"/>
+                <MenuItem Header="Clear" Command="{Binding ClearCommnad}"/>
             </MenuItem>
         </Menu>
         <Grid DockPanel.Dock="Bottom">
@@ -28,6 +29,12 @@
                 <TextBlock DockPanel.Dock="Top" Text="UINodes" TextAlignment="Center"/>
                 <ListView DockPanel.Dock="Bottom" BorderBrush="AliceBlue" ItemsSource="{Binding Path=Nodes}" HorizontalAlignment="Stretch" x:Name="list"
                           SelectedItem="{Binding Selected}">
+                    <ListView.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Clear"
+                Command="{Binding ClearCommand}"/>
+                        </ContextMenu>
+                    </ListView.ContextMenu>
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}"/>
