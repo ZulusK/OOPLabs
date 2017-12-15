@@ -4,6 +4,7 @@ using Lab5.UI.Entities;
 using Lab5.UI.Inputs;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,12 +13,38 @@ using System.Windows.Input;
 
 namespace Lab5.ViewModels
 {
-    class NodeCreationModel
+    class NodeCreationModel : IDataErrorInfo
     {
+        public string Error
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+        
+        public string this[string columnName]
+        {
+            get
+            {
+                string result = null;
+                if (columnName.Equals( "NodeNameToAdd"))
+                {
+                    if (string.IsNullOrEmpty(NodeNameToAdd))
+                        result = "Please enter a Name of model";
+                }
+                else if (columnName.Equals ("NodeTypeToAdd"))
+                {
+                    if (string.IsNullOrEmpty(NodeTypeToAdd))
+                        result = "Please select type of node";
+                }
+                return result;
+            }
+        }
         private DelegateCommand _SubmitCommand;
         private DelegateCommand _CancelCommand;
-        private ICommand _CallBackAddNode;
-        public string NodeNameToAdd{get;set;}
+        private ICommand _CallBack;
+        public string NodeNameToAdd { get; set; }
         public string NodeTypeToAdd { get; set; }
         public string NodeCSSToAdd { get; set; }
 
@@ -64,11 +91,11 @@ namespace Lab5.ViewModels
             switch (NodeTypeToAdd)
             {
                 case "PushButton":
-                    return new PushButton("New button",NodeNameToAdd, new Rectangle(), NodeCSSToAdd);
+                    return new PushButton("New button", NodeNameToAdd, new Rectangle(), NodeCSSToAdd);
                 case "Label":
                     return new Label("New label", NodeNameToAdd, new Rectangle(), NodeCSSToAdd);
                 case "TextArea":
-                    return new TextInput( NodeNameToAdd, new Rectangle(), NodeCSSToAdd);
+                    return new TextInput(NodeNameToAdd, new Rectangle(), NodeCSSToAdd);
                 case "UINode":
                 default:
                     return new UINode(NodeNameToAdd, new Rectangle(), NodeCSSToAdd);
@@ -76,9 +103,9 @@ namespace Lab5.ViewModels
         }
         public void Submit(object window)
         {
-            if (_CallBackAddNode!=null)
+            if (_CallBack != null)
             {
-                _CallBackAddNode.Execute(CreateNewNode());
+                _CallBack.Execute(CreateNewNode());
             }
             if (window != null)
             {
@@ -88,7 +115,7 @@ namespace Lab5.ViewModels
 
         public NodeCreationModel(ICommand addNodeCommand)
         {
-            this._CallBackAddNode = addNodeCommand; 
+            this._CallBack = addNodeCommand;
         }
     }
 }

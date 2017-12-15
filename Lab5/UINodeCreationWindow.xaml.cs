@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 
 namespace Lab5
 {
+   
     public partial class UINodeCreationWindow : Window
     {
         public UINodeCreationWindow(ICommand callbackAddNode)

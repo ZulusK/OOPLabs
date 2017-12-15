@@ -9,7 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Lab5.ViewModels
 {
@@ -68,8 +70,6 @@ namespace Lab5.ViewModels
 
     class MainViewModel : ViewModelBase
     {
-
-
         #region Constructor
 
         public UINodeCollectionModel Nodes { get; set; }
@@ -246,8 +246,8 @@ namespace Lab5.ViewModels
         private void ExecuteRemove(Object args)
         {
             // check, is user is sure
-            
-            
+
+
             if (MessageBox.Show("Are you sure?", "Alert, remove!", MessageBoxButton.YesNo) != MessageBoxResult.Yes) return;
             if (args == null) return;
             UInt32 id = (UInt32)args;
@@ -259,5 +259,44 @@ namespace Lab5.ViewModels
                 this.Nodes.RemoveAt(index);
         }
 
+    }
+    [ValueConversion(typeof(object), typeof(bool))]
+    public class Object2BoolConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter,
+            System.Globalization.CultureInfo culture)
+        {
+            return value != null;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter,
+            System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+
+
+    public class CSS2ColorConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter,
+           System.Globalization.CultureInfo culture)
+        {
+            try
+            {
+                return new SolidColorBrush((Color)ColorConverter.ConvertFromString(value as String));
+            }
+            catch (Exception err)
+            {
+                return new SolidColorBrush(Colors.Aqua);
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter,
+            System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

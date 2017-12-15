@@ -3,9 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:LM="clr-namespace:Lab5.ViewModels"
         xmlns:local="clr-namespace:Lab5"
         mc:Ignorable="d"
         Title="Lab5" Height="522.549" Width="827.941">
+    <Window.Resources>
+        <LM:Object2BoolConverter x:Key="obj2Bool" />
+        <LM:CSS2ColorConverter x:Key="css2Color" />
+    </Window.Resources>
     <DockPanel>
         <Menu  DockPanel.Dock="Top">
             <MenuItem Header="File">
@@ -39,10 +44,20 @@
                         <GridView>
                             <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}"/>
                             <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Path=Type}"/>
+                            <GridViewColumn Header="Style">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Content="{Binding Path=CSS}" Background="{Binding Path=CSS, Converter={StaticResource css2Color}}">
+                                        </Label>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
                             <GridViewColumn Width="Auto" Header="Action" HeaderStringFormat="Screen">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Command="{Binding ElementName=list, Path=DataContext.RemoveCommand}" CommandParameter="{Binding Path=ID}" Content="Delete" Width="auto" Background="Red" HorizontalAlignment="Right" Margin="10,10"/>
+                                        <Button Command="{Binding ElementName=list, Path=DataContext.RemoveCommand}" 
+                                                CommandParameter="{Binding Path=ID}" Content="Delete" Width="auto" 
+                                                Background="Red" HorizontalAlignment="Right" Margin="10,10"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -59,7 +74,12 @@
                 <Label Content="Type" HorizontalAlignment="Right"/>
                 <Label Content="{Binding Type, UpdateSourceTrigger=PropertyChanged}" Height="30" VerticalAlignment="Center"/>
                 <Label Content="CSS" HorizontalAlignment="Right"/>
-                <Label Content="{Binding CSS, UpdateSourceTrigger=PropertyChanged}" Height="30" VerticalAlignment="Center"/>
+                <Label Content="{Binding CSS, UpdateSourceTrigger=PropertyChanged}" Height="30" VerticalAlignment="Center"
+                       Background="{Binding Path=CSS, Converter={StaticResource css2Color}}"/>
+                <Button Content="Edit" Command="{Binding EditCommand}" Width="100" HorizontalAlignment="Center"
+                        IsEnabled="{Binding ElementName=list, Path=DataContext.Selected, Converter={StaticResource obj2Bool}}">
+
+                </Button>
             </StackPanel>
         </Grid>
     </DockPanel>

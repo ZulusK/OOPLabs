@@ -7,7 +7,16 @@
         xmlns:local="clr-namespace:Lab5"
         mc:Ignorable="d"
         Title="Create new node" Height="235.333" Width="300">
-
+    <Window.Resources>
+        <ControlTemplate x:Key="validationFailed">
+            <StackPanel Orientation="Horizontal">
+                <Border BorderBrush="Violet" BorderThickness="2">
+                    <AdornedElementPlaceholder />
+                </Border>
+                <TextBlock Foreground="Red" FontSize="26" FontWeight="Bold">!</TextBlock>
+            </StackPanel>
+        </ControlTemplate>
+    </Window.Resources>
     <Grid Margin="5,5,5,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -21,20 +30,42 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Content="Name" Grid.Column="0" Grid.Row="0" Margin="10,10"/>
-        <TextBox TextWrapping="Wrap"  Grid.Column="1" Grid.Row="0" Margin="10,10" Text="{Binding Path=NodeNameToAdd,
-                    Mode=OneWayToSource}"/>
+        <Label Content="Name" Grid.Column="0" Grid.Row="0"/>
+        <TextBox TextWrapping="Wrap" 
+                 Margin="10,0"
+                 Grid.Column="1" Grid.Row="0"
+                 Validation.ErrorTemplate="{StaticResource validationFailed}"
+                 x:Name="Name">
+            
+            <TextBox.Text>
+                <Binding Path="NodeNameToAdd" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+           
+        </TextBox>
+        
         <Label Content="Type of Node" Grid.Column="0" Grid.Row="1" Margin="10,10"/>
-        <ComboBox Grid.Column="1" Grid.Row="1" Margin="10,10"  Text="{Binding Path=NodeTypeToAdd,
-                    Mode=OneWayToSource}">
+        <ComboBox Grid.Column="1" Grid.Row="1" Margin="10,10" x:Name="Type">
+            <ComboBox.Text>
+                <Binding Path="NodeTypeToAdd">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </ComboBox.Text>
             <TextBlock>Label</TextBlock>
             <TextBlock>PushButton</TextBlock>
             <TextBlock>UINode</TextBlock>
             <TextBlock>TextArea</TextBlock>
         </ComboBox>
         <Label Content="CSS" Grid.Column="0" Grid.Row="2" Margin="10,10"/>
-        <TextBox TextWrapping="Wrap" Grid.Column="1" Grid.Row="2" AcceptsReturn="True" Margin="10,10"  Text="{Binding Path=NodeCSSToAdd,
-                    Mode=OneWayToSource}"/>
+        <TextBox TextWrapping="Wrap" Grid.Column="1" 
+                 Grid.Row="2" AcceptsReturn="True"
+                 Margin="10,10"
+                 Text="{Binding Path=NodeCSSToAdd, Mode=OneWayToSource}"/>
         <Grid  VerticalAlignment="Bottom" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
@@ -43,7 +74,25 @@
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <Button Content="Create" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0"  Margin="10,10" Background="LightGreen" Command="{Binding SubmitCommand, Mode=OneWay}" CommandParameter="{Binding ElementName=CreationWindow}" />
+            <Button Content="Create" HorizontalAlignment="Center"
+                    Grid.Column="0" Grid.Row="0"  Margin="10,10"
+                    Background="LightGreen" Command="{Binding SubmitCommand, Mode=OneWay}"
+                    CommandParameter="{Binding ElementName=CreationWindow}">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="IsEnabled" Value="False"/>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=Name}" Value="False"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=Type}" Value="False"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
             <Button Content="Cancel" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0" Margin="10,10" Background="Red" Command="{Binding CancelCommand, Mode=OneWay}" CommandParameter="{Binding ElementName=CreationWindow}" />
         </Grid>
     </Grid>

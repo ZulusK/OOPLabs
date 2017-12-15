@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace Lab5.ViewModels
 {
     [Serializable]
-    public class UINodeModel
+    public class UINodeModel 
     {
         UINode node;
         public uint ID
@@ -29,6 +30,8 @@ namespace Lab5.ViewModels
         {
             get => node.CSS;
         }
+
+
         public UINodeModel(UINode node)
         {
             this.node = node;
